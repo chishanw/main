@@ -14,7 +14,7 @@ ifdef::env-github[]
 endif::[]
 :repoURL: https://github.com/se-edu/addressbook-level3/tree/master
 
-By: `Team AY1920S2 W16-2`      Since: `Feb 2020`      
+By: `Team AY1920S2 W16-2`      Since: `Feb 2020`
 
 == Setting up
 
@@ -301,37 +301,37 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |`* * *` |User that is busy with multiple commitments |Keep on schedule for my exercise regime |Stay disciplined and keep exercising regularly
 
-|`* * *` |User who has exercise goals |See or track my current progress |Check if I am reaching my goals 
+|`* * *` |User who has exercise goals |See or track my current progress |Check if I am reaching my goals
 
-|`* * *` |User who has exercise goals |Set and adjust goals accordingly |Make plans to reach my goals, and improve upon those plans as I see fit 
+|`* * *` |User who has exercise goals |Set and adjust goals accordingly |Make plans to reach my goals, and improve upon those plans as I see fit
 
-|`* * *` |User who wants to track live progress while exercising |Have a timer for each part of my workout |Stay on schedule for each workout session I do 
+|`* * *` |User who wants to track live progress while exercising |Have a timer for each part of my workout |Stay on schedule for each workout session I do
 
-|`* *` |User who does exercises in sets |Keep track of how many repetitions per exercise |Know the details of each exercise 
+|`* *` |User who does exercises in sets |Keep track of how many repetitions per exercise |Know the details of each exercise
 
-|`* *` |User who has a regular workout schedule, but likes to schedule one-off sessions |Some way to keep track of both regular and one-off workouts |Differentiate between the workouts and manage them both simultaneously 
+|`* *` |User who has a regular workout schedule, but likes to schedule one-off sessions |Some way to keep track of both regular and one-off workouts |Differentiate between the workouts and manage them both simultaneously
 
-|`* *` |User who loses motivation over a long period of time |Something to help me stay motivated |Keep going and not give up halfway 
+|`* *` |User who loses motivation over a long period of time |Something to help me stay motivated |Keep going and not give up halfway
 
-|`* *` |User who lacks self discipline at times |Something to help me maintain the discipline to stay on track |Stick to a regular exercise schedule and regime 
+|`* *` |User who lacks self discipline at times |Something to help me maintain the discipline to stay on track |Stick to a regular exercise schedule and regime
 
-|`* *` |User who needs some inspiration or a change of pace |Have sample workout routines to follow |Get more ideas and ways to structure my workouts and find new exercises 
+|`* *` |User who needs some inspiration or a change of pace |Have sample workout routines to follow |Get more ideas and ways to structure my workouts and find new exercises
 
-|`* *` |User who enjoys graphical displays |Have a graphical overview of various health statistics |Easily comprehend and view my statistics 
+|`* *` |User who enjoys graphical displays |Have a graphical overview of various health statistics |Easily comprehend and view my statistics
 
-|`* *` |User who enjoys exercising and discussing it |Share my workout routines with my friends  |Help each other out by sharing new exercise regimes 
+|`* *` |User who enjoys exercising and discussing it |Share my workout routines with my friends  |Help each other out by sharing new exercise regimes
 
-|`* *` |User who has many different types of workouts |To categorize the different types of workout  |Achieve better organisation 
+|`* *` |User who has many different types of workouts |To categorize the different types of workout  |Achieve better organisation
 
-|`* *` |User who has many different workouts and exercises |To have an overview of all my workout related information |Achieve better organisation 
+|`* *` |User who has many different workouts and exercises |To have an overview of all my workout related information |Achieve better organisation
 
-|`*` |New user who is not familiar with setting up exercise regimes |To have a way to consult with fitness trainers or professionals |Gain better knowledge and understanding of exercise regimes 
+|`*` |New user who is not familiar with setting up exercise regimes |To have a way to consult with fitness trainers or professionals |Gain better knowledge and understanding of exercise regimes
 
-|`*` |User who is sociable and largely influenced by my peers |To see my friends’ progress and achievements |Motivate myself to work harder and help each other out 
+|`*` |User who is sociable and largely influenced by my peers |To see my friends’ progress and achievements |Motivate myself to work harder and help each other out
 
-|`*` |User who sometimes gets a little bored when working out |To have a way to entertain or distract myself when working out  |Keep myself on the task at hand by giving an extra motivation boost 
+|`*` |User who sometimes gets a little bored when working out |To have a way to entertain or distract myself when working out  |Keep myself on the task at hand by giving an extra motivation boost
 
-|`*` |User who enjoys exercising to music that matches the exercise |To have music tailored to my current workout |Have even more fun with my workout
+|`*` |User who enjoys exercising to music that matches the exercise |To have music tailored to my current workout |Have even more fun with my workouts
 |=======================================================================
 
 [appendix]
@@ -340,7 +340,7 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 (For all use cases below, the *System* is the `ZeroToOne` and the *Actor* is the `user`, unless specified otherwise)
 
 [discrete]
-=== Use Case 1: Adding Exercises to Workout 
+=== Use Case 1: Adding Exercises to Workout
 
 *MSS*
 
