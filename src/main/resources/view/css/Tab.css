@@ -14,7 +14,7 @@
 .tab {
     -fx-background-color: #383838;
     -fx-padding: 10 10 10 10;
-    -fx-border-width: 4px 2px;
+    -fx-border-width: 2px;
     -fx-border-color: white;
     -fx-min-width: 100px;
     -fx-focus-color: transparent;
@@ -22,19 +22,19 @@
 }
 
 .tab:selected {
-    -fx-border-width:  4px 2px;
+    -fx-border-width:  2px;
     -fx-border-color: white white salmon white;
 }
 
 .tab:selected .tab-label {
-    -fx-font-weight: bolder;
+    -fx-font-weight: bold;
     -fx-text-fill: salmon;
 }
 
 .tab-label {
     -fx-text-fill: #878787;
-    -fx-font-family: "Segoe UI Light";
-    -fx-font-size: 20;
+    -fx-font-family: "Open Sans";
+    -fx-font-size: 16;
     -fx-alignment: center;
 }
 

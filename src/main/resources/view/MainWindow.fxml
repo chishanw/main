@@ -43,19 +43,19 @@
                  tabClosingPolicy="UNAVAILABLE"
                  stylesheets="@css/Tab.css">
 
-          <Tab text="Home">
+          <Tab text="HOME">
             <StackPane fx:id="homeContentPlaceholder" VBox.vgrow="ALWAYS"/>
           </Tab>
-          <Tab text="Exercise">
+          <Tab text="EXERCISE">
             <StackPane fx:id="exerciseContentPlaceholder" VBox.vgrow="ALWAYS"/>
           </Tab>
-          <Tab text="Workout">
+          <Tab text="WORKOUT">
             <StackPane fx:id="workoutContentPlaceholder" VBox.vgrow="ALWAYS"/>
           </Tab>
-          <Tab text="Schedule">
+          <Tab text="SCHEDULE">
             <StackPane fx:id="scheduleContentPlaceholder" VBox.vgrow="ALWAYS"/>
           </Tab>
-          <Tab text="Log">
+          <Tab text="LOG">
             <StackPane fx:id="logContentPlaceholder" VBox.vgrow="ALWAYS"/>
           </Tab>
         </TabPane>
