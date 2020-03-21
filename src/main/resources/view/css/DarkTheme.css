@@ -9,12 +9,12 @@
 }
 
 @font-face {
-    font-family: 'Open Sans';
+    font-family: 'Open Sans SemiBold';
     src: url('./../../fonts/OpenSans-SemiBold.ttf');
 }
 
 @font-face {
-    font-family: 'Open Sans';
+    font-family: 'Open Sans Bold';
     src: url('./../../fonts/OpenSans-Bold.ttf');
 }
 
