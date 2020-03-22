@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextInputControl;
@@ -94,9 +95,12 @@ public class MainWindow extends UiPart<Stage> {
         helpWindow = new HelpWindow();
 
         tabPanePlaceHolder.widthProperty().addListener((observable, oldValue, newValue) -> {
-            tabPanePlaceHolder.setTabMinWidth(newValue.doubleValue() / 5 - 24);
-            tabPanePlaceHolder.setTabMinWidth(newValue.doubleValue() / 5 - 24);
+            tabPanePlaceHolder.setTabMinWidth(newValue.doubleValue() / 5 - 4);
+            tabPanePlaceHolder.setTabMinWidth(newValue.doubleValue() / 5 - 4);
         });
+
+        tabsVBox = new VBox();
+        tabsVBox.setAlignment(Pos.CENTER);
     }
 
     public Stage getPrimaryStage() {

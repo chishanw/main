@@ -40,6 +40,7 @@
       <VBox id="tabsVBox" HBox.hgrow="ALWAYS">
         <TabPane fx:id="tabPanePlaceHolder"
                  VBox.vgrow="ALWAYS"
+                 HBox.hgrow="NEVER"
                  tabClosingPolicy="UNAVAILABLE"
                  stylesheets="@css/Tab.css">
 
