@@ -13,29 +13,29 @@
 
 .tab {
     -fx-background-color: #383838;
-    -fx-padding: 10 10 10 10;
-    -fx-border-width: 2px;
+    -fx-padding: 10 0 10 0;
+    -fx-border-width: 1px 1px 2px 0px;
     -fx-border-color: white;
     -fx-min-width: 100px;
     -fx-focus-color: transparent;
     -fx-faint-focus-color: transparent;
 }
 
+.tab-label {
+    -fx-text-fill: #ebebeb;
+    -fx-font-family: "Open Sans";
+    -fx-font-size: 16;
+    -fx-alignment: center;
+}
+
 .tab:selected {
-    -fx-border-width:  2px;
+    -fx-border-width: 1px 1px 2px 0px;
     -fx-border-color: white white salmon white;
 }
 
 .tab:selected .tab-label {
     -fx-font-weight: bold;
     -fx-text-fill: salmon;
-}
-
-.tab-label {
-    -fx-text-fill: #878787;
-    -fx-font-family: "Open Sans";
-    -fx-font-size: 16;
-    -fx-alignment: center;
 }
 
 /* remove dropdown bottom */
