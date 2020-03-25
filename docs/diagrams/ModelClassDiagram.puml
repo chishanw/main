@@ -15,17 +15,16 @@ Class ModelManager
 Class UserPrefs
 Class ReadOnlyUserPrefs
 
-Package Person {
-Class Person
-Class Address
-Class Email
+Package Exercise {
+Class Exercise
 Class Name
-Class Phone
-Class UniquePersonList
+Class UniqueExerciseList
 }
 
-Package Tag {
-Class Tag
+Package ExerciseSet {
+Class ExerciseSet
+Class Weight
+Class NumReps
 }
 }
 
@@ -40,17 +39,13 @@ ModelManager o--> "1" ExerciseList
 ModelManager o-left-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-ExerciseList *--> "1" UniquePersonList
-UniquePersonList o--> "*" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+ExerciseList *--> "1" UniqueExerciseList
+UniqueExerciseList o--> "*" Exercise
+Exercise *--> Name
+Exercise *--> "*" ExerciseSet
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+ExerciseSet *--> Weight
+ExerciseSet *--> NumReps
 
-ModelManager -->"1" Person : filtered list
+ModelManager -->"1" Exercise : filtered list
 @enduml
