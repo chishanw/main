@@ -3,7 +3,7 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":ExerciseListParser" as ExerciseListParser LOGIC_COLOR
+participant ":ExerciseCommandParser" as ExerciseCommandParser LOGIC_COLOR
 participant ":DeleteCommandParser" as DeleteCommandParser LOGIC_COLOR
 participant "d:DeleteCommand" as DeleteCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
@@ -13,20 +13,20 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("delete 1")
+[-> LogicManager : execute("exercise delete 1")
 activate LogicManager
 
-LogicManager -> ExerciseListParser : parseCommand("delete 1")
-activate ExerciseListParser
+LogicManager -> ExerciseCommandParser : parseCommand("exercise delete 1")
+activate ExerciseCommandParser
 
 create DeleteCommandParser
-ExerciseListParser -> DeleteCommandParser
+ExerciseCommandParser -> DeleteCommandParser
 activate DeleteCommandParser
 
-DeleteCommandParser --> ExerciseListParser
+DeleteCommandParser --> ExerciseCommandParser
 deactivate DeleteCommandParser
 
-ExerciseListParser -> DeleteCommandParser : parse("1")
+ExerciseCommandParser -> DeleteCommandParser : parse("1")
 activate DeleteCommandParser
 
 create DeleteCommand
@@ -36,19 +36,19 @@ activate DeleteCommand
 DeleteCommand --> DeleteCommandParser : d
 deactivate DeleteCommand
 
-DeleteCommandParser --> ExerciseListParser : d
+DeleteCommandParser --> ExerciseCommandParser : d
 deactivate DeleteCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-DeleteCommandParser -[hidden]-> ExerciseListParser
+DeleteCommandParser -[hidden]-> ExerciseCommandParser
 destroy DeleteCommandParser
 
-ExerciseListParser --> LogicManager : d
-deactivate ExerciseListParser
+ExerciseCommandParser --> LogicManager : d
+deactivate ExerciseCommandParser
 
 LogicManager -> DeleteCommand : execute()
 activate DeleteCommand
 
-DeleteCommand -> Model : deletePerson(1)
+DeleteCommand -> Model : deleteExercise(1)
 activate Model
 
 Model --> DeleteCommand
