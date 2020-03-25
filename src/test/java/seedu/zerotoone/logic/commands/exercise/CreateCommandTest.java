@@ -10,6 +10,7 @@ import static seedu.zerotoone.testutil.exercise.TypicalExercises.BENCH_PRESS;
 import static seedu.zerotoone.testutil.exercise.TypicalExercises.DEADLIFT;
 
 import java.nio.file.Path;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Predicate;
@@ -151,6 +152,21 @@ public class CreateCommandTest {
 
         @Override
         public void updateFilteredExerciseList(Predicate<Exercise> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean isInSession() {
+            return false;
+        }
+
+        @Override
+        public void startSession(Exercise exerciseToStart, LocalDateTime currentDateTime) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void stopSession(LocalDateTime currentDateTime) {
             throw new AssertionError("This method should not be called.");
         }
     }

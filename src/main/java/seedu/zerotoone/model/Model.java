@@ -1,6 +1,7 @@
 package seedu.zerotoone.model;
 
 import java.nio.file.Path;
+import java.time.LocalDateTime;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -94,4 +95,13 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredExerciseList(Predicate<Exercise> predicate);
+
+    /**
+     * Returns true if a workout has currently started.
+     */
+    boolean isInSession();
+
+    void startSession(Exercise exerciseToStart, LocalDateTime currentDateTime);
+
+    void stopSession(LocalDateTime currentDateTime);
 }

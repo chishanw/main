@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.zerotoone.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.time.LocalDateTime;
+import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -14,6 +16,7 @@ import seedu.zerotoone.commons.core.LogsCenter;
 import seedu.zerotoone.model.exercise.Exercise;
 import seedu.zerotoone.model.exercise.ExerciseList;
 import seedu.zerotoone.model.exercise.ReadOnlyExerciseList;
+import seedu.zerotoone.model.session.Session;
 import seedu.zerotoone.model.userprefs.ReadOnlyUserPrefs;
 import seedu.zerotoone.model.userprefs.UserPrefs;
 
@@ -26,6 +29,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final ExerciseList exerciseList;
     private final FilteredList<Exercise> filteredExercises;
+    private Optional<Session> currentSession;
 
     /**
      * Initializes a ModelManager with the given exerciseList and userPrefs.
@@ -38,6 +42,7 @@ public class ModelManager implements Model {
         this.exerciseList = new ExerciseList(exerciseList);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredExercises = new FilteredList<>(this.exerciseList.getExerciseList());
+        this.currentSession = Optional.empty();
     }
 
     public ModelManager() {
@@ -123,6 +128,25 @@ public class ModelManager implements Model {
     public void updateFilteredExerciseList(Predicate<Exercise> predicate) {
         requireNonNull(predicate);
         filteredExercises.setPredicate(predicate);
+    }
+
+    @Override
+    public boolean isInSession() {
+        return this.currentSession.isPresent();
+    }
+
+    @Override
+    public void startSession(Exercise exerciseToStart, LocalDateTime currentDateTime) {
+        Session session = new Session(exerciseToStart, currentDateTime);
+        this.currentSession = Optional.of(session);
+    }
+
+    @Override
+    public void stopSession(LocalDateTime currentDateTime) {
+        Session completedSession = this.currentSession.get();
+        completedSession.finish(currentDateTime);
+        // do smth like save completed workout
+        this.currentSession = Optional.empty();
     }
 
     // -----------------------------------------------------------------------------------------
