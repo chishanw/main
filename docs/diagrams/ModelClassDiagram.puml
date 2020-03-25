@@ -7,9 +7,16 @@ skinparam classBackgroundColor MODEL_COLOR
 Package Model <<Rectangle>>{
 Interface ReadOnlyExerciseList <<Interface>>
 Interface Model <<Interface>>
+Interface ExerciseModel <<Interface>>
+Interface WorkoutModel <<Interface>>
+Interface SessionModel <<Interface>>
+Interface LogModel <<Interface>>
 Interface ObservableList <<Interface>>
-Class ExerciseList
+Class ExerciseManager
 Class ReadOnlyExerciseList
+Class WorkoutManager
+Class SessionManager
+Class LogManager
 Class Model
 Class ModelManager
 Class UserPrefs
@@ -17,7 +24,7 @@ Class ReadOnlyUserPrefs
 
 Package Exercise {
 Class Exercise
-Class Name
+Class ExerciseName
 Class UniqueExerciseList
 }
 
@@ -26,26 +33,61 @@ Class ExerciseSet
 Class Weight
 Class NumReps
 }
+
+Package Workout {
+Class Workout
+Class WorkoutName
+Class UniqueWorkoutList
 }
 
-Class HiddenOutside #FFFFFF
-HiddenOutside ..> Model
+Package Session {
+Class Session
+Class Workout
+Class UniqueSessionList
+}
 
-ExerciseList .up.|> ReadOnlyExerciseList
+Package Log {
+Class Log
+Class Session
+Class UniqueLogList
+}
+}
+
+ExerciseManager .up.|> ReadOnlyExerciseList
+
+Model -up-|> ExerciseModel
+Model -up-|> WorkoutModel
+Model -up-|> SessionModel
+Model -up-|> LogModel
 
 ModelManager .up.|> Model
 Model .right.> ObservableList
-ModelManager o--> "1" ExerciseList
+ModelManager o-down-> "1" ExerciseManager
 ModelManager o-left-> "1" UserPrefs
-UserPrefs .up.|> ReadOnlyUserPrefs
+UserPrefs .left.|> ReadOnlyUserPrefs
 
-ExerciseList *--> "1" UniqueExerciseList
+ExerciseManager *--> "1" UniqueExerciseList
 UniqueExerciseList o--> "*" Exercise
-Exercise *--> Name
+Exercise *--> ExerciseName
 Exercise *--> "*" ExerciseSet
 
 ExerciseSet *--> Weight
 ExerciseSet *--> NumReps
 
-ModelManager -->"1" Exercise : filtered list
+ModelManager o--> "1" WorkoutManager
+WorkoutManager *--> "1" UniqueWorkoutList
+UniqueWorkoutList o--> "*" Workout
+Workout *--> WorkoutName
+Workout *--> "*" Exercise
+
+ModelManager o--> "1" SessionManager
+SessionManager *--> "1" UniqueSessionList
+UniqueSessionList o--> "*" Session
+Session *--> "*" Workout
+
+ModelManager o----> "1" LogManager
+LogManager *--> "1" UniqueLogList
+UniqueLogList o--> "*" Log
+Log *--> "*" Session
+
 @enduml
