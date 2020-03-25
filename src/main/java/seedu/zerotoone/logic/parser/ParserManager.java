@@ -9,9 +9,12 @@ import java.util.regex.Pattern;
 import seedu.zerotoone.logic.commands.Command;
 import seedu.zerotoone.logic.commands.ExitCommand;
 import seedu.zerotoone.logic.commands.HelpCommand;
+import seedu.zerotoone.logic.commands.StartCommand;
+import seedu.zerotoone.logic.commands.StopCommand;
 import seedu.zerotoone.logic.commands.exercise.ExerciseCommand;
 import seedu.zerotoone.logic.parser.exceptions.ParseException;
 import seedu.zerotoone.logic.parser.exercise.ExerciseCommandParser;
+import seedu.zerotoone.logic.parser.session.StartCommandParser;
 
 /**
  * Parses user input.
@@ -39,6 +42,10 @@ public class ParserManager {
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
+        case StartCommand.COMMAND_WORD:
+            return new StartCommandParser().parse(arguments);
+        case StopCommand.COMMAND_WORD:
+            return new StopCommand();
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
         case HelpCommand.COMMAND_WORD:

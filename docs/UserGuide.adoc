@@ -48,7 +48,7 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 ====
 *Command Format*
 
-* Words in `<arrow brackets>` are the parameters to be supplied by the user e.g. in `start <workout>`, `workout` is a parameter which can be used as `start MorningWorkout`.
+* Words in `<arrow brackets>` are the parameters to be supplied by the user e.g. in `start <workout>`, `session` is a parameter which can be used as `start MorningWorkout`.
 * Items in square brackets are optional e.g `start <workout> <sets> [interval]` can be used as `start Morning 2 100` or as `start Morning 2`.
 * Items with `…`​ after them can be used multiple times including zero times e.g. `[t/TAG]...` can be used as `{nbsp}` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 * Parameters must be in the specified order.

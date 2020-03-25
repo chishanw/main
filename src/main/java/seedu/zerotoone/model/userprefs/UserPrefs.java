@@ -111,7 +111,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         StringBuilder sb = new StringBuilder();
         sb.append("Gui Settings : " + guiSettings);
         sb.append("\nExercise List file location : " + exerciseListFilePath);
-        sb.append("\nWorkout List file location : " + workoutListFilePath);
+        sb.append("\nSession List file location : " + workoutListFilePath);
         sb.append("\nSchedule List file location : " + scheduleListFilePath);
         sb.append("\nLog List file location : " + logListFilePath);
         return sb.toString();
