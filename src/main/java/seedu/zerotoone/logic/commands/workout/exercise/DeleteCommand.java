@@ -20,7 +20,7 @@ import seedu.zerotoone.model.workout.Workout;
 public class DeleteCommand extends WorkoutExerciseCommand {
     public static final String COMMAND_WORD = "delete";
     public static final String MESSAGE_USAGE = "Usage: workout exercise delete WORKOUT_ID EXERCISE_ID";
-    public static final String MESSAGE_DELETE_WORKOUT_EXERCISE_SUCCESS = "Deleted workout exercise: %1$s";
+    public static final String MESSAGE_DELETE_WORKOUT_EXERCISE_SUCCESS = "Deleted workout exercise %1$s from %1$s";
 
     private final Index workoutId;
     private final Index exerciseId;
@@ -50,6 +50,7 @@ public class DeleteCommand extends WorkoutExerciseCommand {
         Workout workoutToEdit = lastShownWorkoutList.get(workoutId.getZeroBased());
 
         List<Exercise> updatedWorkoutExercises = new ArrayList<>(workoutToEdit.getWorkoutExercises());
+        Exercise exerciseToDelete = updatedWorkoutExercises.get(exerciseId.getZeroBased());
         updatedWorkoutExercises.remove(exerciseId.getZeroBased());
 
         Workout editedWorkout = new Workout(workoutToEdit.getWorkoutName(), updatedWorkoutExercises);
@@ -57,7 +58,10 @@ public class DeleteCommand extends WorkoutExerciseCommand {
         model.setWorkout(workoutToEdit, editedWorkout);
         model.updateFilteredWorkoutList(PREDICATE_SHOW_ALL_WORKOUTS);
 
-        String outputMessage = String.format(MESSAGE_DELETE_WORKOUT_EXERCISE_SUCCESS, editedWorkout);
+        String outputMessage = String.format(
+                MESSAGE_DELETE_WORKOUT_EXERCISE_SUCCESS,
+                exerciseToDelete.getExerciseName(),
+                editedWorkout.getWorkoutName());
         return new CommandResult(outputMessage);
     }
 
