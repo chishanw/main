@@ -38,12 +38,19 @@ public class WorkoutBuilder {
         return this;
     }
 
+    public WorkoutBuilder withWorkoutExerciseList(List<Exercise> workoutExerciseList) {
+        this.workoutExercises = workoutExerciseList;
+        return this;
+    }
+
     /**
      * Exercises the {@code workoutExercises} of the {@code Workout} that we are building.
      */
-    public WorkoutBuilder withWorkoutExercise(Exercise exercise) {
+    public WorkoutBuilder withWorkoutExercise(Exercise ... exercises) {
         List<Exercise> workoutExercisesCopy = new ArrayList<>(workoutExercises);
-        workoutExercisesCopy.add(exercise);
+        for (Exercise exercise : exercises) {
+            workoutExercisesCopy.add(exercise);
+        }
         workoutExercises = workoutExercisesCopy;
         return this;
     }
