@@ -2,6 +2,7 @@ package seedu.zerotoone.logic.commands.workout;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.zerotoone.logic.commands.workout.EditCommand.MESSAGE_DUPLICATE_WORKOUT;
 import static seedu.zerotoone.testutil.Assert.assertThrows;
 import static seedu.zerotoone.testutil.CommandTestUtil.assertCommandSuccess;
 import static seedu.zerotoone.testutil.TypicalIndexes.INDEX_FIRST_OBJECT;
@@ -10,9 +11,13 @@ import static seedu.zerotoone.testutil.exercise.TypicalExercises.getTypicalExerc
 import static seedu.zerotoone.testutil.workout.TypicalWorkouts.ARMS_WORKOUT;
 import static seedu.zerotoone.testutil.workout.TypicalWorkouts.LEGS_WORKOUT;
 import static seedu.zerotoone.testutil.workout.TypicalWorkouts.getTypicalWorkoutList;
+import static seedu.zerotoone.testutil.workout.WorkoutCommandTestUtil.assertCommandFailure;
+import static seedu.zerotoone.testutil.workout.WorkoutCommandTestUtil.showWorkoutAtIndex;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.zerotoone.commons.core.Messages;
+import seedu.zerotoone.commons.core.index.Index;
 import seedu.zerotoone.model.Model;
 import seedu.zerotoone.model.ModelManager;
 import seedu.zerotoone.model.log.LogList;
@@ -51,6 +56,28 @@ public class EditCommandTest {
         expectedModel.setWorkout(workoutToEdit, editedWorkout);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_invalidIndexFilteredList_throwsCommandException() {
+        showWorkoutAtIndex(model, INDEX_FIRST_OBJECT);
+
+        Index outOfBoundIndex = INDEX_SECOND_OBJECT;
+        // ensures that outOfBoundIndex is still in bounds of exercise list
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getWorkoutList().getWorkoutList().size());
+
+        EditCommand editCommand = new EditCommand(outOfBoundIndex, new WorkoutName("Sample workout name"));
+
+        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_INDEX);
+    }
+
+    @Test
+    public void execute_duplicateWorkout_throwsCommandException() {
+        Workout workout = model.getFilteredWorkoutList().get(INDEX_FIRST_OBJECT.getZeroBased());
+
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_OBJECT, workout.getWorkoutName());
+
+        assertCommandFailure(editCommand, model, MESSAGE_DUPLICATE_WORKOUT);
     }
 
     @Test
