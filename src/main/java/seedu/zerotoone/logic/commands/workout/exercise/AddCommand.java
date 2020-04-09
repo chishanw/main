@@ -71,7 +71,8 @@ public class AddCommand extends WorkoutExerciseCommand {
         model.setWorkout(workoutToEdit, editedWorkout);
         model.updateFilteredWorkoutList(PREDICATE_SHOW_ALL_WORKOUTS);
 
-        String outputMessage = String.format(MESSAGE_ADD_WORKOUT_EXERCISE_SUCCESS, exerciseToAdd.getExerciseName().fullName);
+        String outputMessage = String.format(MESSAGE_ADD_WORKOUT_EXERCISE_SUCCESS,
+                exerciseToAdd.getExerciseName().fullName);
         return new CommandResult(outputMessage);
     }
 

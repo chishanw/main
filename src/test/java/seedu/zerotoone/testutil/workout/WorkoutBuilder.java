@@ -17,6 +17,9 @@ public class WorkoutBuilder {
     private WorkoutName workoutName;
     private List<Exercise> workoutExercises;
 
+    /**
+     * Constructor for a fresh instance of WorkoutBuilder.
+     */
     public WorkoutBuilder() {
         workoutName = new WorkoutName(DEFAULT_WORKOUT_NAME);
         workoutExercises = new ArrayList<>();
@@ -38,6 +41,9 @@ public class WorkoutBuilder {
         return this;
     }
 
+    /**
+     * Exercises the {@code workoutExercises} of the {@code Workout} that we are building.
+     */
     public WorkoutBuilder withWorkoutExerciseList(List<Exercise> workoutExerciseList) {
         this.workoutExercises = workoutExerciseList;
         return this;

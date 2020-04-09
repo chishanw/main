@@ -5,6 +5,9 @@ import static java.util.Objects.requireNonNull;
 import seedu.zerotoone.model.workout.Workout;
 import seedu.zerotoone.testutil.ModelStub;
 
+/**
+ * Model stub with workout.
+ */
 public class ModelStubWithWorkout extends ModelStub {
     private final Workout workout;
 

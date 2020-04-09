@@ -1,7 +1,8 @@
 package seedu.zerotoone.testutil;
-import java.util.ArrayList;
+
 import java.nio.file.Path;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Optional;
 import java.util.function.Predicate;
 
@@ -24,6 +25,9 @@ import seedu.zerotoone.model.userprefs.ReadOnlyUserPrefs;
 import seedu.zerotoone.model.workout.ReadOnlyWorkoutList;
 import seedu.zerotoone.model.workout.Workout;
 
+/**
+ * Stub for the Model class.
+ */
 public class ModelStub implements Model {
     @Override
     public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {

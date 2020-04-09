@@ -7,9 +7,9 @@ import static seedu.zerotoone.testutil.CommandTestUtil.assertCommandSuccess;
 import static seedu.zerotoone.testutil.TypicalIndexes.INDEX_FIRST_OBJECT;
 import static seedu.zerotoone.testutil.TypicalIndexes.INDEX_SECOND_OBJECT;
 import static seedu.zerotoone.testutil.exercise.TypicalExercises.getTypicalExerciseList;
-import static seedu.zerotoone.testutil.workout.TypicalWorkouts.getTypicalWorkoutList;
 import static seedu.zerotoone.testutil.workout.TypicalWorkouts.ARMS_WORKOUT;
 import static seedu.zerotoone.testutil.workout.TypicalWorkouts.LEGS_WORKOUT;
+import static seedu.zerotoone.testutil.workout.TypicalWorkouts.getTypicalWorkoutList;
 
 import org.junit.jupiter.api.Test;
 
