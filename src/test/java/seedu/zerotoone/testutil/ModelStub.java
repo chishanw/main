@@ -1,5 +1,5 @@
 package seedu.zerotoone.testutil;
-
+import java.util.ArrayList;
 import java.nio.file.Path;
 import java.time.LocalDateTime;
 import java.util.Optional;
@@ -180,7 +180,11 @@ public class ModelStub implements Model {
     }
 
     public void deleteWorkout(Workout target) {
+        throw new AssertionError("This method should not be called.");
+    }
 
+    public void deleteExerciseFromWorkouts(Exercise exercise) {
+        throw new AssertionError("This method should not be called.");
     }
 
     @Override
@@ -235,6 +239,22 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public ArrayList<CompletedWorkout> getLogListCopyAsArrayList() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+
+    @Override
+    public Optional<LocalDateTime> getStatisticsStartDateRange() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public Optional<LocalDateTime> getStatisticsEndDateRange() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public void populateSortedScheduledWorkoutList() {
         throw new AssertionError("This method should not be called.");
     }
@@ -251,6 +271,11 @@ public class ModelStub implements Model {
 
     @Override
     public void updateFilteredLogList(Predicate<CompletedWorkout> predicate) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void setStatisticsDateRange(Optional<LocalDateTime> startRange, Optional<LocalDateTime> endRange) {
         throw new AssertionError("This method should not be called.");
     }
 
