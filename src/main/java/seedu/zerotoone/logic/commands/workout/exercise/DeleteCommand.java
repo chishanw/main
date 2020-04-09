@@ -54,6 +54,11 @@ public class DeleteCommand extends WorkoutExerciseCommand {
         Workout workoutToEdit = lastShownWorkoutList.get(workoutId.getZeroBased());
 
         List<Exercise> updatedWorkoutExercises = new ArrayList<>(workoutToEdit.getWorkoutExercises());
+
+        if (exerciseId.getZeroBased() >= updatedWorkoutExercises.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_INDEX);
+        }
+
         Exercise exerciseToDelete = updatedWorkoutExercises.get(exerciseId.getZeroBased());
         updatedWorkoutExercises.remove(exerciseId.getZeroBased());
 

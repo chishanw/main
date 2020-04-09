@@ -8,9 +8,13 @@ import static seedu.zerotoone.testutil.TypicalIndexes.INDEX_FIRST_OBJECT;
 import static seedu.zerotoone.testutil.TypicalIndexes.INDEX_SECOND_OBJECT;
 import static seedu.zerotoone.testutil.exercise.TypicalExercises.getTypicalExerciseList;
 import static seedu.zerotoone.testutil.workout.TypicalWorkouts.getTypicalWorkoutList;
+import static seedu.zerotoone.testutil.workout.WorkoutCommandTestUtil.assertCommandFailure;
+import static seedu.zerotoone.testutil.workout.WorkoutCommandTestUtil.showWorkoutAtIndex;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.zerotoone.commons.core.Messages;
+import seedu.zerotoone.commons.core.index.Index;
 import seedu.zerotoone.model.Model;
 import seedu.zerotoone.model.ModelManager;
 import seedu.zerotoone.model.exercise.Exercise;
@@ -31,6 +35,23 @@ public class EditCommandTest {
     public void constructor_nullWorkout_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new EditCommand(null, null, null));
     }
+
+    @Test
+    public void execute_invalidWorkoutIndexUnfilteredList_throwsCommandException() {
+        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredWorkoutList().size() + 1);
+        EditCommand editCommand = new EditCommand(outOfBoundIndex, INDEX_FIRST_OBJECT, INDEX_SECOND_OBJECT);
+
+        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_INDEX);
+    }
+
+    @Test
+    public void execute_invalidExerciseIndexUnfilteredList_throwsCommandException() {
+        Index outOfBoundIndex = Index.fromOneBased(model.getWorkoutList().getWorkoutList().size() + 1);
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_OBJECT, INDEX_FIRST_OBJECT, outOfBoundIndex);
+
+        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_INDEX);
+    }
+
     @Test
     public void execute_validIndexUnfilteredList_success() {
         Workout workoutToEdit = model.getFilteredWorkoutList().get(INDEX_FIRST_OBJECT.getZeroBased());
@@ -52,6 +73,19 @@ public class EditCommandTest {
         expectedModel.setWorkout(workoutToEdit, editedWorkout);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_invalidWorkoutIndexFilteredList_throwsCommandException() {
+        showWorkoutAtIndex(model, INDEX_FIRST_OBJECT);
+
+        Index outOfBoundIndex = INDEX_SECOND_OBJECT;
+        // ensures that outOfBoundIndex is still in bounds of exercise list
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getWorkoutList().getWorkoutList().size());
+
+        EditCommand editCommand = new EditCommand(outOfBoundIndex, INDEX_FIRST_OBJECT, INDEX_SECOND_OBJECT);
+
+        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_INDEX);
     }
 
     @Test
