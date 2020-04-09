@@ -6,8 +6,8 @@ import static seedu.zerotoone.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import seedu.zerotoone.logic.commands.AboutCommand;
 import seedu.zerotoone.logic.commands.Command;
-import seedu.zerotoone.logic.commands.HelpCommand;
 import seedu.zerotoone.logic.commands.schedule.CreateCommand;
 import seedu.zerotoone.logic.commands.schedule.DeleteCommand;
 import seedu.zerotoone.logic.commands.schedule.EditCommand;
@@ -31,7 +31,7 @@ public class ScheduleCommandParser {
     public Command parse(String input) throws ParseException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(input.trim());
         if (!matcher.matches()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AboutCommand.MESSAGE_USAGE));
         }
 
         final String commandWord = matcher.group("commandWord");

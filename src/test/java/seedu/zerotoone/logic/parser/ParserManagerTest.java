@@ -7,8 +7,8 @@ import static seedu.zerotoone.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.zerotoone.logic.commands.AboutCommand;
 import seedu.zerotoone.logic.commands.ExitCommand;
-import seedu.zerotoone.logic.commands.HelpCommand;
 import seedu.zerotoone.logic.commands.exercise.ExerciseCommand;
 import seedu.zerotoone.logic.parser.exceptions.ParseException;
 
@@ -24,21 +24,21 @@ public class ParserManagerTest {
 
     @Test
     public void parse_help() throws Exception {
-        assertTrue(parser.parse(HelpCommand.COMMAND_WORD) instanceof HelpCommand);
-        assertTrue(parser.parse(HelpCommand.COMMAND_WORD + " 3") instanceof HelpCommand);
+        assertTrue(parser.parse(AboutCommand.COMMAND_WORD) instanceof AboutCommand);
+        assertTrue(parser.parse(AboutCommand.COMMAND_WORD + " 3") instanceof AboutCommand);
     }
 
     @Test
     public void parse_exercise() throws Exception {
         assertThrows(ParseException.class,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), () ->
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AboutCommand.MESSAGE_USAGE), () ->
                 parser.parse(ExerciseCommand.COMMAND_WORD));
     }
 
     @Test
     public void parse_unrecognisedInput_throwsParseException() {
         assertThrows(ParseException.class,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), () ->
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AboutCommand.MESSAGE_USAGE), () ->
                 parser.parse(""));
     }
 

@@ -11,7 +11,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import seedu.zerotoone.logic.commands.HelpCommand;
+import seedu.zerotoone.logic.commands.AboutCommand;
 import seedu.zerotoone.logic.commands.exceptions.CommandException;
 import seedu.zerotoone.logic.commands.exercise.CreateCommand;
 import seedu.zerotoone.logic.commands.exercise.ExerciseCommand;
@@ -66,8 +66,8 @@ public class LogicManagerTest {
 
     @Test
     public void execute_validCommand_success() throws Exception {
-        String helpCommand = HelpCommand.COMMAND_WORD;
-        LogicManagerTestUtil.assertCommandSuccess(helpCommand, HelpCommand.SHOWING_HELP_MESSAGE,
+        String helpCommand = AboutCommand.COMMAND_WORD;
+        LogicManagerTestUtil.assertCommandSuccess(helpCommand, AboutCommand.SHOWING_ABOUT_MESSAGE,
                 model, logic, new ModelManager());
     }
 

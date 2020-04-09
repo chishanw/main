@@ -55,12 +55,12 @@
     -fx-padding: 0;
 }
 
-#logTab {
+#helpTab {
     -fx-border-width: 1px 1px 2px 0px;
     -fx-border-color: #313133 #313133 #e5e5e5 #e5e5e5;
 }
 
-#logTab:selected {
+#helpTab:selected {
     -fx-border-width: 1px 1px 2px 0px;
     -fx-border-color: #313133 #313133 salmon #e5e5e5;
 }

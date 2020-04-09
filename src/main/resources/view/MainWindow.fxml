@@ -36,7 +36,9 @@
             <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
           </Menu>
         </MenuBar> -->
+      <!-- <HBox>
 
+      </HBox> -->
       <HBox fx:id="tabsContainer" VBox.vgrow="ALWAYS" >
       <VBox id="tabsVBox" HBox.hgrow="ALWAYS">
         <TabPane fx:id="tabPanePlaceHolder"
@@ -56,8 +58,11 @@
           <Tab text="SCHEDULE">
             <StackPane fx:id="scheduleContentPlaceholder" VBox.vgrow="ALWAYS"/>
           </Tab>
-          <Tab fx:id="logTab" text="LOG">
+          <Tab text="LOG">
             <StackPane fx:id="logContentPlaceholder" VBox.vgrow="ALWAYS"/>
+          </Tab>
+          <Tab text="ABOUT" fx:id="helpTab">
+            <StackPane fx:id="helpDisplayPlaceholder" VBox.vgrow="ALWAYS"/>
           </Tab>
         </TabPane>
     </VBox>

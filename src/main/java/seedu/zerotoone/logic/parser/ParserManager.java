@@ -7,10 +7,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.zerotoone.commons.util.Pair;
+import seedu.zerotoone.logic.commands.AboutCommand;
 import seedu.zerotoone.logic.commands.Command;
 import seedu.zerotoone.logic.commands.DoneCommand;
 import seedu.zerotoone.logic.commands.ExitCommand;
-import seedu.zerotoone.logic.commands.HelpCommand;
 import seedu.zerotoone.logic.commands.SkipCommand;
 import seedu.zerotoone.logic.commands.StartCommand;
 import seedu.zerotoone.logic.commands.StopCommand;
@@ -62,8 +62,8 @@ public class ParserManager {
             return new SkipCommandParser().parse(arguments);
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
-        case HelpCommand.COMMAND_WORD:
-            return new HelpCommand();
+        case AboutCommand.COMMAND_WORD:
+            return new AboutCommand();
         case ExerciseCommand.COMMAND_WORD:
             return new ExerciseCommandParser().parse(arguments);
         case WorkoutCommand.COMMAND_WORD:
@@ -98,7 +98,7 @@ public class ParserManager {
             return ViewType.SESSION_VIEW;
         case ExitCommand.COMMAND_WORD:
             return ViewType.SESSION_VIEW;
-        case HelpCommand.COMMAND_WORD:
+        case AboutCommand.COMMAND_WORD:
             return ViewType.SESSION_VIEW;
         case ExerciseCommand.COMMAND_WORD:
             return ViewType.EXERCISE_VIEW;
@@ -123,7 +123,7 @@ public class ParserManager {
     private Pair<String, String> separateCommandAndArguments(String input) throws ParseException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(input.trim());
         if (!matcher.matches()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AboutCommand.MESSAGE_USAGE));
         }
 
         final String commandWord = matcher.group("commandWord");
