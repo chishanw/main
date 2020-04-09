@@ -3,6 +3,7 @@ package seedu.zerotoone.testutil.workout;
 import java.util.ArrayList;
 import java.util.List;
 
+import seedu.zerotoone.commons.core.index.Index;
 import seedu.zerotoone.model.exercise.Exercise;
 import seedu.zerotoone.model.workout.Workout;
 import seedu.zerotoone.model.workout.WorkoutName;
@@ -57,6 +58,13 @@ public class WorkoutBuilder {
         for (Exercise exercise : exercises) {
             workoutExercisesCopy.add(exercise);
         }
+        workoutExercises = workoutExercisesCopy;
+        return this;
+    }
+
+    public WorkoutBuilder setWorkoutExercise(Index target, Exercise newExercise) {
+        List<Exercise> workoutExercisesCopy = new ArrayList<>(workoutExercises);
+        workoutExercisesCopy.set(target.getZeroBased(), newExercise);
         workoutExercises = workoutExercisesCopy;
         return this;
     }
