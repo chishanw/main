@@ -17,7 +17,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     private Path exerciseListFilePath = Paths.get("data" , "exerciselist.json");
     private Path workoutListFilePath = Paths.get("data" , "workoutlist.json");
     private Path scheduleListFilePath = Paths.get("data" , "schedulelist.json");
-    private Path logListFilePath = Paths.get("data" , "log.json");
+    private Path logListFilePath = Paths.get("data" , "loglist.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.

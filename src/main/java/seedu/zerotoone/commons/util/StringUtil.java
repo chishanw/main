@@ -11,6 +11,27 @@ import java.util.Arrays;
  * Helper functions for handling strings.
  */
 public class StringUtil {
+    /**
+     * Returns true if the {@code sentence} contains the {@code substring}.
+     *   Ignores case
+     *   <br>examples:<pre>
+     *       containsSubstringIgnoreCase("ABc def", "bc") == true
+     *       containsSubstringIgnoreCase("ABc def", "c def") == true
+     *       containsSubstringIgnoreCase("ABc def", "g") == false // not a full substring match
+     *       </pre>
+     * @param sentence cannot be null
+     * @param substring cannot be null, cannot be empty
+     */
+    public static boolean containsSubstringIgnoreCase(String sentence, String substring) {
+        requireNonNull(sentence);
+        requireNonNull(substring);
+
+        String preppedSubstring = substring.trim().toLowerCase();
+        checkArgument(!preppedSubstring.isEmpty(), "Substring parameter cannot be empty");
+
+        return sentence.toLowerCase()
+                .contains(preppedSubstring);
+    }
 
     /**
      * Returns true if the {@code sentence} contains the {@code word}.

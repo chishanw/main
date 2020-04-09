@@ -35,23 +35,27 @@ public class PredicateFilterExerciseNameTest {
     }
 
     @Test
-    public void test_nameContainsKeywords_returnsTrue() {
-        // One keyword
+    public void test_nameContainsSubstring_returnsTrue() {
+        // One word substring
         PredicateFilterExerciseName predicate = new PredicateFilterExerciseName("Bench");
         assertTrue(predicate.test(new ExerciseBuilder().withExerciseName("Bench Press").build()));
 
-        // Full Keyword
+        // Full word Substring
         predicate = new PredicateFilterExerciseName("Bench Press");
         assertTrue(predicate.test(new ExerciseBuilder().withExerciseName("Bench Press").build()));
 
-        // Mixed-case keywords
+        // Mixed-case substrings
         predicate = new PredicateFilterExerciseName("bEnCh");
+        assertTrue(predicate.test(new ExerciseBuilder().withExerciseName("Bench Press").build()));
+
+        // Partial substring
+        predicate = new PredicateFilterExerciseName("ben");
         assertTrue(predicate.test(new ExerciseBuilder().withExerciseName("Bench Press").build()));
     }
 
     @Test
-    public void test_nameDoesNotContainKeywords_returnsFalse() {
-        // Non-matching keyword
+    public void test_nameDoesNotContainSubstring_returnsFalse() {
+        // Non-matching substring
         PredicateFilterExerciseName predicate = new PredicateFilterExerciseName("Bench");
         assertFalse(predicate.test(new ExerciseBuilder().withExerciseName("Deadlift").build()));
     }

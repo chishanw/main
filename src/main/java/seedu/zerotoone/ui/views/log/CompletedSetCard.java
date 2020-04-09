@@ -1,5 +1,6 @@
 package seedu.zerotoone.ui.views.log;
 
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
@@ -21,20 +22,20 @@ public class CompletedSetCard extends UiPart<Region> {
      */
 
     @FXML
-    private Label setId;
+    private Label setTitle;
     @FXML
-    private Label numReps;
-    @FXML
-    private Label weight;
-    @FXML
-    private Label isFinished;
+    private FontAwesomeIcon isSetFinished;
 
-    public CompletedSetCard(int setId, String numReps, String weight, Boolean isFinished) {
+    public CompletedSetCard(int setId, String numReps, String weight, Boolean isSetFinished) {
         super(FXML);
-        this.setId.setText(String.format("Set %d. ", setId + 1));
-        this.numReps.setText(numReps);
-        this.weight.setText(String.format("%skg", weight));
-        this.isFinished.setText(isFinished ? " (Complete)" : " (Incomplete)");
+        this.setTitle.setText(formatTitle(setId, numReps, weight));
+        this.isSetFinished.setGlyphName(isSetFinished ? "CHECK" : "TIMES");
+        this.isSetFinished.getStyleClass().add(isSetFinished ? "isCompleted" : "isSkipped");
+
+    }
+
+    private String formatTitle(int setId, String numReps, String weight) {
+        return String.format(" - %s reps of %s kg", numReps, weight);
     }
 
     @Override
@@ -51,9 +52,7 @@ public class CompletedSetCard extends UiPart<Region> {
 
         // state check
         CompletedSetCard card = (CompletedSetCard) other;
-        return setId.getText().equals(card.setId.getText())
-            && numReps.getText().equals(card.numReps.getText())
-            && weight.getText().equals(card.weight.getText())
-            && isFinished.getText().equals(card.isFinished.getText());
+        return this.setTitle.equals(((CompletedSetCard) other).setTitle)
+            && isSetFinished.getText().equals(card.isSetFinished.getText());
     }
 }

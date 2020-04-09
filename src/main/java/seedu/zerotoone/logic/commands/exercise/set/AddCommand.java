@@ -8,6 +8,7 @@ import java.util.List;
 
 import seedu.zerotoone.commons.core.Messages;
 import seedu.zerotoone.commons.core.index.Index;
+import seedu.zerotoone.logic.commands.Command;
 import seedu.zerotoone.logic.commands.CommandResult;
 import seedu.zerotoone.logic.commands.exceptions.CommandException;
 import seedu.zerotoone.model.Model;
@@ -45,15 +46,18 @@ public class AddCommand extends SetCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Exercise> lastShownList = model.getFilteredExerciseList();
+        if (model.isInSession()) {
+            throw new CommandException(Command.MESSAGE_SESSION_STARTED);
+        }
 
+        List<Exercise> lastShownList = model.getFilteredExerciseList();
         if (exerciseId.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_INDEX);
         }
 
         Exercise exerciseToEdit = lastShownList.get(exerciseId.getZeroBased());
-
         List<ExerciseSet> updatedExerciseSets = new ArrayList<>(exerciseToEdit.getExerciseSets());
+
         ExerciseSet exerciseSetToAdd = new ExerciseSet(weight, numReps);
         updatedExerciseSets.add(exerciseSetToAdd);
         Exercise editedExercise = new Exercise(exerciseToEdit.getExerciseName(), updatedExerciseSets);

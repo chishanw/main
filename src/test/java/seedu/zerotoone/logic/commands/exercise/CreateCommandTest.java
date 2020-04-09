@@ -197,12 +197,19 @@ public class CreateCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
         public boolean hasWorkout(Workout workout) {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
         public void deleteWorkout(Workout target) {
+            throw new AssertionError("This method should not be called.");
+        }
 
+        @Override
+        public void deleteExerciseFromWorkouts(Exercise target) {
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
@@ -229,7 +236,7 @@ public class CreateCommandTest {
         // Session
         @Override
         public boolean isInSession() {
-            return false;
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
@@ -319,6 +326,11 @@ public class CreateCommandTest {
         }
 
         @Override
+        public ArrayList<CompletedWorkout> getLogListCopyAsArrayList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<CompletedWorkout> getFilteredLogList() {
             throw new AssertionError("This method should not be called.");
         }
@@ -334,12 +346,27 @@ public class CreateCommandTest {
         }
 
         @Override
+        public Optional<LocalDateTime> getStatisticsStartDateRange() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Optional<LocalDateTime> getStatisticsEndDateRange() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void deleteLog(int target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void setLogListFilePath(Path logListFilePath) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setStatisticsDateRange(Optional<LocalDateTime> startRange, Optional<LocalDateTime> endRange) {
             throw new AssertionError("This method should not be called.");
         }
     }
@@ -356,6 +383,11 @@ public class CreateCommandTest {
         }
 
         @Override
+        public boolean isInSession() {
+            return false;
+        }
+
+        @Override
         public boolean hasExercise(Exercise exercise) {
             requireNonNull(exercise);
             return this.exercise.isSameExercise(exercise);
@@ -367,6 +399,11 @@ public class CreateCommandTest {
      */
     private class ModelStubAcceptingExerciseAdded extends ModelStub {
         final ArrayList<Exercise> exercisesAdded = new ArrayList<>();
+
+        @Override
+        public boolean isInSession() {
+            return false;
+        }
 
         @Override
         public boolean hasExercise(Exercise exercise) {

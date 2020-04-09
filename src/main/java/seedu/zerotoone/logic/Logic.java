@@ -18,7 +18,7 @@ import seedu.zerotoone.ui.util.ViewType;
 /**
  * API of the Logic component
  */
-public interface Logic extends WorkoutLogic {
+public interface Logic extends WorkoutLogic, StatisticsLogic {
     /**
      * Executes the command and returns the result.
      * @param commandText The command as entered by the user.

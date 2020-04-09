@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.zerotoone.model.exercise.Exercise;
 
 /**
  * Wraps all data at the exercise list level
@@ -90,6 +91,15 @@ public class WorkoutList implements ReadOnlyWorkoutList {
      */
     public void removeWorkout(Workout key) {
         workouts.remove(key);
+    }
+
+    /**
+     * Removes {@code exercise} from all {@code Workout} in {@code WorkoutList}.
+     */
+    public void removeExerciseFromWorkouts(Exercise exercise) {
+        for (Workout workout : workouts.asUnmodifiableObservableList()) {
+            workout.deleteExercise(exercise);
+        }
     }
 
     //// util methods

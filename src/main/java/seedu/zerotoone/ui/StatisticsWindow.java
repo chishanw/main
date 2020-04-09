@@ -6,24 +6,35 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import seedu.zerotoone.commons.core.LogsCenter;
+import seedu.zerotoone.model.log.StatisticsData;
+import seedu.zerotoone.ui.util.DateViewUtil;
 import seedu.zerotoone.ui.util.UiPart;
 
 /**
  * Controller for a help page
  */
-public class ReportWindow extends UiPart<Stage> {
-    private static final Logger logger = LogsCenter.getLogger(ReportWindow.class);
-    private static final String FXML = "ReportWindow.fxml";
+public class StatisticsWindow extends UiPart<Stage> {
+    private static final Logger logger = LogsCenter.getLogger(StatisticsWindow.class);
+    private static final String FXML = "StatisticsWindow.fxml";
 
     @FXML
     private Label message;
+
+    @FXML
+    private Label totalWorkoutCount;
+    @FXML
+    private Label totalTime;
+    @FXML
+    private Label averageTimePerDay;
+    @FXML
+    private Label range;
 
     /**
      * Creates a new ReportWindow.
      *
      * @param root Stage to use as the root of the ReportWindow.
      */
-    public ReportWindow(Stage root) {
+    public StatisticsWindow(Stage root) {
         super(FXML, root);
         message.setText("DISPLAY SOME MEANINGFUL STATS HERE");
     }
@@ -31,7 +42,7 @@ public class ReportWindow extends UiPart<Stage> {
     /**
      * Creates a new HelpWindow.
      */
-    public ReportWindow() {
+    public StatisticsWindow() {
         this(new Stage());
     }
 
@@ -53,10 +64,21 @@ public class ReportWindow extends UiPart<Stage> {
      *     </li>
      * </ul>
      */
-    public void show() {
+    public void show(StatisticsData statisticsData) {
         logger.fine("Showing help page about the application.");
         getRoot().show();
         getRoot().centerOnScreen();
+
+        totalWorkoutCount.setText(String.format("Total Workout Count -> %d", statisticsData.getTotalWorkoutCount()));
+
+        totalTime.setText(String.format("Total Time Spent -> %s",
+            DateViewUtil.getPrettyDuration(statisticsData.getTotalTime())));
+        averageTimePerDay.setText(String.format("Average Time Per Day -> %s",
+            DateViewUtil.getPrettyDuration(statisticsData.getAverageTimePerDay())));
+
+
+        range.setText(DateViewUtil.getPrettyDateRangeDateTime(
+            statisticsData.getStartRange(), statisticsData.getEndRange()));
     }
 
     /**

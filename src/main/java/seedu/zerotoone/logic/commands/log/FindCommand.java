@@ -6,10 +6,11 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.function.Predicate;
 
+import seedu.zerotoone.logic.commands.Command;
 import seedu.zerotoone.logic.commands.CommandResult;
+import seedu.zerotoone.logic.commands.exceptions.CommandException;
 import seedu.zerotoone.model.Model;
-import seedu.zerotoone.model.exercise.ExerciseName;
-import seedu.zerotoone.model.log.PredicateFilterLogExerciseName;
+import seedu.zerotoone.model.log.PredicateFilterLogWorkoutName;
 import seedu.zerotoone.model.session.CompletedWorkout;
 import seedu.zerotoone.model.workout.WorkoutName;
 
@@ -20,43 +21,41 @@ import seedu.zerotoone.model.workout.WorkoutName;
 public class FindCommand extends LogCommand {
     public static final String COMMAND_WORD = "find";
     public static final String MESSAGE_USAGE =
-        "Usage: log find [e/exercise_name] [st/start_time] [et/end_time] [w/workout_name]";
-    public static final String MESSAGE_SESSIONS_LISTED_OVERVIEW = "%1$d sessions found!";
+        "Usage: log find [st/start_time] [et/end_time] [w/workout_name]";
+    public static final String MESSAGE_SESSIONS_LISTED_OVERVIEW = "%1$d logs found!";
 
-    private final Optional<LocalDateTime> startTimeOptional;
-    private final Optional<LocalDateTime> endTimeOptional;
-    private final Optional<ExerciseName> exerciseNameOptional;
+    private final Optional<LocalDateTime> startRange;
+    private final Optional<LocalDateTime> endRange;
     private final Optional<WorkoutName> workoutNameOptional;
 
-    public FindCommand(Optional<LocalDateTime> startTimeOptional,
-        Optional<LocalDateTime> endTimeOptional,
-        Optional<ExerciseName> exerciseNameOptional,
+    public FindCommand(Optional<LocalDateTime> startRange,
+        Optional<LocalDateTime> endRange,
         Optional<WorkoutName> workoutNameOptional) {
-        this.startTimeOptional = startTimeOptional;
-        this.endTimeOptional = endTimeOptional;
-        this.exerciseNameOptional = exerciseNameOptional;
+        this.startRange = startRange;
+        this.endRange = endRange;
         this.workoutNameOptional = workoutNameOptional;
     }
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        if (model.isInSession()) {
+            throw new CommandException(Command.MESSAGE_SESSION_STARTED);
+        }
+
         Predicate<CompletedWorkout> predicate = session -> true;
 
-
-        if (exerciseNameOptional.isPresent()) {
-            predicate = predicate.and(new PredicateFilterLogExerciseName(exerciseNameOptional.get().fullName));
+        if (workoutNameOptional.isPresent()) {
+            predicate = predicate.and(new PredicateFilterLogWorkoutName(workoutNameOptional.get().fullName));
         }
 
-        if (startTimeOptional.isPresent()) {
-            predicate = predicate.and(session -> session.getStartTime().equals(startTimeOptional.get()));
+        if (startRange.isPresent()) {
+            predicate = predicate.and(session -> session.getStartTime().isAfter(startRange.get()));
         }
 
-        if (endTimeOptional.isPresent()) {
-            predicate = predicate.and(session -> session.getEndTime().equals(endTimeOptional.get()));
+        if (endRange.isPresent()) {
+            predicate = predicate.and(session -> session.getEndTime().isBefore(endRange.get()));
         }
-
-        // todo implement workout
 
         model.updateFilteredLogList(predicate);
 
@@ -69,6 +68,6 @@ public class FindCommand extends LogCommand {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
             || (other instanceof FindCommand // instanceof handles nulls
-            && exerciseNameOptional.equals(((FindCommand) other).exerciseNameOptional)); // state check
+            && workoutNameOptional.equals(((FindCommand) other).workoutNameOptional)); // state check
     }
 }

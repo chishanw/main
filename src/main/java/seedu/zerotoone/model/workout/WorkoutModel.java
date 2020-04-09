@@ -4,6 +4,7 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
+import seedu.zerotoone.model.exercise.Exercise;
 
 /**
  * Model for Workout.
@@ -41,6 +42,12 @@ public interface WorkoutModel {
      * The workout must exist in the workout list.
      */
     void deleteWorkout(Workout target);
+
+    /**
+     * Deletes the {@code exericse} from all workouts in {@code WorkoutList}.
+     * @param exercise The exercise to be deleted.
+     */
+    void deleteExerciseFromWorkouts(Exercise exercise);
 
     /**
      * Adds the given workout.

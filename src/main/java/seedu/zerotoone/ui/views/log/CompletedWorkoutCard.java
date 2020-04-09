@@ -1,5 +1,9 @@
 package seedu.zerotoone.ui.views.log;
 
+import static seedu.zerotoone.ui.util.DateViewUtil.getPrettyDateRangeDateTime;
+import static seedu.zerotoone.ui.util.DateViewUtil.getPrettyDuration;
+
+import java.time.Duration;
 import java.util.List;
 
 import javafx.collections.FXCollections;
@@ -9,7 +13,6 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.zerotoone.commons.util.DateUtil;
 import seedu.zerotoone.model.session.CompletedExercise;
 import seedu.zerotoone.model.session.CompletedWorkout;
 import seedu.zerotoone.ui.util.UiPart;
@@ -30,29 +33,28 @@ public class CompletedWorkoutCard extends UiPart<Region> {
 
     @javafx.fxml.FXML
     private HBox cardPane;
+
     @FXML
-    private Label workoutId;
-    @FXML
-    private Label workoutName;
+    private Label workoutTitle;
     @FXML
     private ListView<CompletedExercise> exerciseListView;
     @FXML
-    private Label startTime;
-    @FXML
-    private Label endTime;
-
+    private Label startEndTime;
     public CompletedWorkoutCard(CompletedWorkout completedWorkout, int displayedIndex) {
         super(FXML);
-        workoutId.setText(String.format("WORKOUT %d", displayedIndex));
-        workoutName.setText("Workout Name: '" + completedWorkout.getWorkoutName().fullName + "'");
-        startTime.setText(DateUtil.getPrettyDateTimeString(completedWorkout.getStartTime()));
-        endTime.setText(DateUtil.getPrettyDateTimeString(completedWorkout.getEndTime()));
-
+        workoutTitle.setText(formatTitle(completedWorkout, displayedIndex));
+        startEndTime.setText(getPrettyDateRangeDateTime(completedWorkout.getStartTime(),
+            completedWorkout.getEndTime()) + ", "
+            + getPrettyDuration(Duration.between(completedWorkout.getStartTime(), completedWorkout.getEndTime())));
 
         List<CompletedExercise> exerciseList = completedWorkout.getExercises();
 
         exerciseListView.setItems(FXCollections.observableArrayList(exerciseList));
         exerciseListView.setCellFactory(listView -> new CompletedExerciseViewCell());
+    }
+
+    private String formatTitle(CompletedWorkout completedWorkout, int displayedIndex) {
+        return "LOG #" + displayedIndex + ": " + completedWorkout.getWorkoutName().fullName;
     }
 
     @Override
@@ -69,8 +71,7 @@ public class CompletedWorkoutCard extends UiPart<Region> {
 
         // state check
         CompletedWorkoutCard card = (CompletedWorkoutCard) other;
-        return workoutId.getText().equals(card.workoutName.getText())
-            && workoutName.getText().equals(card.workoutName.getText());
+        return workoutTitle.getText().equals(card.workoutTitle.getText());
     }
 
     /**

@@ -1,5 +1,7 @@
 package seedu.zerotoone.ui.views.log;
 
+import static seedu.zerotoone.ui.util.DateViewUtil.getPrettyTimeDifference;
+
 import java.util.List;
 
 import javafx.fxml.FXML;
@@ -7,7 +9,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import seedu.zerotoone.commons.util.DateUtil;
 import seedu.zerotoone.model.session.CompletedExercise;
 import seedu.zerotoone.model.session.CompletedSet;
 import seedu.zerotoone.ui.util.UiPart;
@@ -29,22 +30,13 @@ public class CompletedExerciseCard extends UiPart<Region> {
     @javafx.fxml.FXML
     private HBox cardPane;
     @FXML
-    private Label exerciseId;
-    @FXML
-    private Label exerciseName;
+    private Label exerciseTitle;
     @FXML
     private VBox exerciseSets;
-    @FXML
-    private Label startTime;
-    @FXML
-    private Label endTime;
 
     public CompletedExerciseCard(CompletedExercise completedExercise, int displayedIndex) {
         super(FXML);
-        exerciseId.setText(String.format("EX%d: ", displayedIndex));
-        exerciseName.setText(completedExercise.getExerciseName().fullName);
-        startTime.setText(DateUtil.getPrettyDateTimeString(completedExercise.getStartTime()));
-        endTime.setText(DateUtil.getPrettyDateTimeString(completedExercise.getEndTime()));
+        exerciseTitle.setText(formatTitle(completedExercise, displayedIndex));
 
         List<CompletedSet> exerciseSetsList = completedExercise.getSets();
         for (int i = 0; i < exerciseSetsList.size(); i++) {
@@ -54,6 +46,11 @@ public class CompletedExerciseCard extends UiPart<Region> {
                     completedSet.isFinished());
             this.exerciseSets.getChildren().add(completedSetCard.getRoot());
         }
+    }
+
+    private String formatTitle(CompletedExercise completedExercise, int displayIndex) {
+        return String.format("Exercise #%d: %s (%s)", displayIndex, completedExercise.getExerciseName().fullName,
+            getPrettyTimeDifference(completedExercise.getStartTime(), completedExercise.getEndTime()));
     }
 
     @Override
@@ -70,7 +67,6 @@ public class CompletedExerciseCard extends UiPart<Region> {
 
         // state check
         CompletedExerciseCard card = (CompletedExerciseCard) other;
-        return exerciseId.getText().equals(card.exerciseId.getText())
-            && exerciseName.getText().equals(card.exerciseName.getText());
+        return card.exerciseTitle.equals(exerciseTitle);
     }
 }

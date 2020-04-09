@@ -50,6 +50,7 @@ import seedu.zerotoone.ui.UiManager;
  */
 public class MainApp extends Application {
     public static final Version VERSION = new Version(0, 6, 0, true);
+    private static final String ICON_APPLICATION = "/images/icon.png";
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
     protected Ui ui;
@@ -172,9 +173,6 @@ public class MainApp extends Application {
             logger.warning("Problem while reading from the file. Will be starting with an empty LogList");
             initialLogListData = new LogList();
         }
-
-        ;
-
         return new ModelManager(userPrefs,
                 initialExerciseListData,
                 initialWorkoutListData,
@@ -258,6 +256,7 @@ public class MainApp extends Application {
     public void start(Stage primaryStage) {
         logger.info("Starting ZeroToOne " + MainApp.VERSION);
         ui.start(primaryStage);
+
     }
 
     @Override

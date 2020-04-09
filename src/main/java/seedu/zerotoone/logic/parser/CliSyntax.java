@@ -14,6 +14,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_DATETIME = new Prefix("d/");
     public static final Prefix PREFIX_FREQUENCY = new Prefix("f/");
     public static final Prefix PREFIX_FILEPATH = new Prefix("p/");
-    public static final Prefix PREFIX_SESSION_START = new Prefix("st/");
-    public static final Prefix PREFIX_SESSION_END = new Prefix("et/");
+    public static final Prefix PREFIX_LOG_START = new Prefix("st/");
+    public static final Prefix PREFIX_LOG_END = new Prefix("et/");
 }

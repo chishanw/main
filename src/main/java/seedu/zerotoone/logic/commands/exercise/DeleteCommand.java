@@ -1,11 +1,13 @@
 package seedu.zerotoone.logic.commands.exercise;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.zerotoone.model.Model.PREDICATE_SHOW_ALL_WORKOUTS;
 
 import java.util.List;
 
 import seedu.zerotoone.commons.core.Messages;
 import seedu.zerotoone.commons.core.index.Index;
+import seedu.zerotoone.logic.commands.Command;
 import seedu.zerotoone.logic.commands.CommandResult;
 import seedu.zerotoone.logic.commands.exceptions.CommandException;
 import seedu.zerotoone.model.Model;
@@ -28,6 +30,10 @@ public class DeleteCommand extends ExerciseCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        if (model.isInSession()) {
+            throw new CommandException(Command.MESSAGE_SESSION_STARTED);
+        }
+
         List<Exercise> lastShownList = model.getFilteredExerciseList();
 
         if (exerciseId.getZeroBased() >= lastShownList.size()) {
@@ -36,6 +42,8 @@ public class DeleteCommand extends ExerciseCommand {
 
         Exercise exerciseToDelete = lastShownList.get(exerciseId.getZeroBased());
         model.deleteExercise(exerciseToDelete);
+        model.deleteExerciseFromWorkouts(exerciseToDelete);
+        model.updateFilteredWorkoutList(PREDICATE_SHOW_ALL_WORKOUTS);
 
         String outputMessage = String.format(MESSAGE_DELETE_EXERCISE_SUCCESS,
                 exerciseToDelete.getExerciseName().toString());

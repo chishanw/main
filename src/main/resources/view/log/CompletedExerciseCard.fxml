@@ -20,19 +20,12 @@
             </padding>
 
             <HBox alignment="CENTER_LEFT" spacing="5">
-                <Label fx:id="exerciseId" styleClass="cell_big_label" text="1. ">
+                <Label fx:id="exerciseTitle" styleClass="cell_big_label" text="Exercise #1: Pull Ups">
                     <minWidth>
                         <!-- Ensures that the label text is never truncated -->
                         <Region fx:constant="USE_PREF_SIZE" />
                     </minWidth>
                 </Label>
-                <Label fx:id="exerciseName" styleClass="cell_big_label"/>
-            </HBox>
-
-            <HBox alignment="CENTER_LEFT" spacing="5">
-                <Label fx:id="startTime" styleClass="cell_big_label" />
-                <Label text=" to "/>
-                <Label fx:id="endTime" styleClass="cell_big_label"/>
             </HBox>
 
             <VBox fx:id="exerciseSets" />

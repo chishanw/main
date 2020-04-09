@@ -48,7 +48,7 @@ public class LogCommandParser {
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
         case DisplayCommand.COMMAND_WORD:
-            return new DisplayCommand();
+            return new DisplayCommandParser().parse(arguments);
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }

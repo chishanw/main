@@ -365,7 +365,14 @@
     -fx-background-color: #0F4472;
 }
 
-#exerciseId, #exerciseName, #workoutId, #workoutName, #scheduledWorkoutId, #scheduledWorkoutName {
+#workoutTitle {
+    -fx-font-family: "Open Sans SemiBold";
+    -fx-font-size: 22px;
+    -fx-text-fill: #FFA372;
+    -fx-padding: 4px 0px 6px 0px;
+}
+
+#exerciseTitle, #exerciseName, #workoutName, #scheduledWorkoutId, #scheduledWorkoutName {
     -fx-font-family: "Open Sans SemiBold";
     -fx-font-size: 16px;
     -fx-text-fill: #FFA372;
@@ -409,4 +416,12 @@
     -fx-border-radius: 2;
     -fx-background-radius: 2;
     -fx-font-size: 11;
+}
+
+.isCompleted {
+    -fx-fill: green;
+}
+
+.isSkipped {
+    -fx-fill: red;
 }

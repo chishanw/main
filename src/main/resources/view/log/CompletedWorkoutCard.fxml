@@ -1,26 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.FlowPane?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.ListView?>
-<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
-    <GridPane HBox.hgrow="ALWAYS">
+<?import de.jensd.fx.glyphs.fontawesome.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+    <GridPane HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
         <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
+            <ColumnConstraints hgrow="ALWAYS" minWidth="10" prefWidth="150" />
         </columnConstraints>
-        <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
+        <VBox alignment="CENTER_LEFT" minHeight="105" prefHeight="492.0" prefWidth="228.0" GridPane.columnIndex="0" VBox.vgrow="ALWAYS">
             <padding>
-                <Insets bottom="5" left="15" right="5" top="5" />
+                <Insets bottom="15" left="15" right="15" top="5" />
             </padding>
 
-            <Label fx:id="workoutId" styleClass="cell_big_label" text="1">
+            <Label fx:id="workoutTitle" styleClass="cell_big_label" text="Workout #1: Test Workout">
                 <minWidth>
                     <!-- Ensures that the label text is never truncated -->
                     <Region fx:constant="USE_PREF_SIZE" />
@@ -28,19 +23,17 @@
             </Label>
 
             <HBox alignment="CENTER_LEFT" spacing="5">
-                <Label fx:id="startTime" styleClass="cell_big_label" />
-                <Label text=" to "/>
-                <Label fx:id="endTime" styleClass="cell_big_label"/>
+                <FontAwesomeIcon glyphName="CALENDAR"/>
+                <Label fx:id="startEndTime" styleClass="cell_big_label" />
             </HBox>
-            <HBox alignment="CENTER_LEFT" spacing="5">
-                <Label fx:id="workoutName" styleClass="cell_big_label"/>
-            </HBox>
-            <VBox fx:id="completedSets" />
-            <FlowPane fx:id="tags" />
 
-            <VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-                <ListView fx:id="exerciseListView" VBox.vgrow="ALWAYS" />
-            </VBox>
+            <Separator prefWidth="200.0" >
+                <padding>
+                    <Insets top="10" bottom="5"/>
+                </padding>
+            </Separator>
+
+            <ListView fx:id="exerciseListView" VBox.vgrow="ALWAYS"/>
         </VBox>
         <rowConstraints>
             <RowConstraints />

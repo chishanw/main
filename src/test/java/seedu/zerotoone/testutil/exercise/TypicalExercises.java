@@ -22,18 +22,21 @@ import seedu.zerotoone.model.exercise.ExerciseList;
  */
 public class TypicalExercises {
     // Manually added - Exercise's details found in {@code CommandTestUtil}
-    public static final Exercise BENCH_PRESS = new ExerciseBuilder()
+    public static final ExerciseBuilder BENCH_PRESS_BUILDER = new ExerciseBuilder()
             .withExerciseName(VALID_EXERCISE_NAME_BENCH_PRESS)
-            .withExerciseSet(VALID_WEIGHT_BENCH_PRESS, VALID_NUM_REPS_BENCH_PRESS)
-            .build();
-    public static final Exercise DEADLIFT = new ExerciseBuilder()
+            .withExerciseSet(VALID_WEIGHT_BENCH_PRESS, VALID_NUM_REPS_BENCH_PRESS);
+    public static final Exercise BENCH_PRESS = BENCH_PRESS_BUILDER.build();
+
+    public static final ExerciseBuilder DEADLIFT_BUILDER = new ExerciseBuilder()
             .withExerciseName(VALID_EXERCISE_NAME_DEADLIFT)
-            .withExerciseSet(VALID_WEIGHT_DEADLIFT, VALID_NUM_REPS_DEADLIFT)
-            .build();
-    public static final Exercise OVERHEAD_PRESS = new ExerciseBuilder()
+            .withExerciseSet(VALID_WEIGHT_DEADLIFT, VALID_NUM_REPS_DEADLIFT);
+    public static final Exercise DEADLIFT = DEADLIFT_BUILDER.build();
+
+    public static final ExerciseBuilder OVERHEAD_PRESS_BUILDER = new ExerciseBuilder()
             .withExerciseName(VALID_EXERCISE_NAME_OVERHEAD_PRESS)
-            .withExerciseSet(VALID_WEIGHT_OVERHEAD_PRESS, VALID_NUM_REPS_OVERHEAD_PRESS)
-            .build();
+            .withExerciseSet(VALID_WEIGHT_OVERHEAD_PRESS, VALID_NUM_REPS_OVERHEAD_PRESS);
+    public static final Exercise OVERHEAD_PRESS = OVERHEAD_PRESS_BUILDER.build();
+
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
@@ -44,13 +47,12 @@ public class TypicalExercises {
      */
     public static ExerciseList getTypicalExerciseList() {
         ExerciseList el = new ExerciseList();
-        for (Exercise exercise : getTypicalExercises()) {
-            el.addExercise(exercise);
+        List<ExerciseBuilder> typicalExerciseBuilders = new ArrayList<>(
+                Arrays.asList(BENCH_PRESS_BUILDER, DEADLIFT_BUILDER));
+
+        for (ExerciseBuilder exerciseBuilder : typicalExerciseBuilders) {
+            el.addExercise(exerciseBuilder.build());
         }
         return el;
-    }
-
-    public static List<Exercise> getTypicalExercises() {
-        return new ArrayList<>(Arrays.asList(BENCH_PRESS, DEADLIFT));
     }
 }

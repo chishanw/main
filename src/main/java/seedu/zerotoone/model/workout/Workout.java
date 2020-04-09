@@ -50,6 +50,16 @@ public class Workout {
     }
 
     /**
+     * Deletes an exercise from the workout.
+     * @param exericse The exercise to be deleted.
+     */
+    public void deleteExercise(Exercise exericse) {
+        while (workoutExercises.contains(exericse)) {
+            workoutExercises.remove(exericse);
+        }
+    }
+
+    /**
      * Returns true if both workouts have the same identity and data fields.
      * This defines a stronger notion of equality between two workouts.
      */

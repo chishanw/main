@@ -9,13 +9,13 @@ import static seedu.zerotoone.commons.util.AppUtil.checkArgument;
  */
 public class NumReps {
 
-    public static final String MESSAGE_CONSTRAINTS = "Number of repetitions should only be one number.";
+    public static final String MESSAGE_CONSTRAINTS = "Number of repetitions should be a non-negative number.";
 
     /*
      * The first character of the number of repetitions must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "\\d{1,}";
+    public static final String VALIDATION_REGEX = "^[1-9][0-9]*";
 
     public final String value;
 

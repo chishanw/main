@@ -153,12 +153,13 @@ public class StorageManager implements Storage {
 
     @Override
     public Optional<ReadOnlyLogList> readLogList() throws DataConversionException, IOException {
-        return Optional.empty();
+        return readLogList(logListStorage.getLogListFilePath());
     }
 
     @Override
     public Optional<ReadOnlyLogList> readLogList(Path filePath) throws DataConversionException, IOException {
-        return Optional.empty();
+        logger.fine("Attempting to read data from file: " + filePath);
+        return logListStorage.readLogList(filePath);
     }
 
     @Override

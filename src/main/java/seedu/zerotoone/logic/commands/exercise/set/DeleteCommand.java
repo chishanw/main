@@ -8,6 +8,7 @@ import java.util.List;
 
 import seedu.zerotoone.commons.core.Messages;
 import seedu.zerotoone.commons.core.index.Index;
+import seedu.zerotoone.logic.commands.Command;
 import seedu.zerotoone.logic.commands.CommandResult;
 import seedu.zerotoone.logic.commands.exceptions.CommandException;
 import seedu.zerotoone.model.Model;
@@ -36,6 +37,10 @@ public class DeleteCommand extends SetCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        if (model.isInSession()) {
+            throw new CommandException(Command.MESSAGE_SESSION_STARTED);
+        }
+
         List<Exercise> lastShownList = model.getFilteredExerciseList();
 
         if (exerciseId.getZeroBased() >= lastShownList.size()) {
@@ -45,6 +50,9 @@ public class DeleteCommand extends SetCommand {
         Exercise exerciseToEdit = lastShownList.get(exerciseId.getZeroBased());
 
         List<ExerciseSet> updatedExerciseSets = new ArrayList<>(exerciseToEdit.getExerciseSets());
+        if (setId.getZeroBased() >= updatedExerciseSets.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_INDEX);
+        }
         updatedExerciseSets.remove(setId.getZeroBased());
 
         Exercise editedExercise = new Exercise(exerciseToEdit.getExerciseName(), updatedExerciseSets);

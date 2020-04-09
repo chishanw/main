@@ -28,10 +28,11 @@ public class ExerciseNameTest {
         assertFalse(ExerciseName.isValidExerciseName(" ")); // spaces only
         assertFalse(ExerciseName.isValidExerciseName("^")); // only non-alphanumeric characters
         assertFalse(ExerciseName.isValidExerciseName("deadlift*")); // contains non-alphanumeric characters
+        assertFalse(ExerciseName.isValidExerciseName("2 directional"
+                + "elbow circles")); // starts with non [a-zA-Z] characters
 
         // valid Exercise Name
         assertTrue(ExerciseName.isValidExerciseName("jumping jacks")); // alphabets only
-        assertTrue(ExerciseName.isValidExerciseName("2 directional elbow circles")); // alphanumeric characters
         assertTrue(ExerciseName.isValidExerciseName("Bench Press")); // with capital letters
         assertTrue(ExerciseName.isValidExerciseName("Chest supported and seated cable row")); // long names
     }

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.stage.*?>
+
+<fx:root minHeight="720" minWidth="540" resizable="false" title="ZeroToOne Report" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+  <scene>
+    <Scene>
+        <AnchorPane>
+
+            <VBox>
+
+                <HBox>
+                     <Label>ZeroToOne Statistics</Label>
+                </HBox>
+
+                <HBox>
+                    <Label fx:id="range"/>
+                </HBox>
+
+                <HBox>
+                    <Label fx:id="totalWorkoutCount">Total Workouts Count</Label>
+                </HBox>
+
+                <HBox alignment="CENTER" prefHeight="119.0" prefWidth="114.0">
+                    <children>
+                        <Label fx:id="message" text="Label">
+                            <HBox.margin>
+                                <Insets right="5.0" />
+                            </HBox.margin>
+                        </Label>
+                    </children>
+                    <opaqueInsets>
+                        <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
+                    </opaqueInsets>
+                    <padding>
+                        <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
+                    </padding>
+                </HBox>
+
+                <HBox>
+                    <Label fx:id="averageTimePerDay">Average Time Per Day -></Label>
+                </HBox>
+
+                <HBox>
+                    <Label fx:id="totalTime" >Total time -> </Label>
+                </HBox>
+
+
+
+                <HBox>
+
+                    <LineChart>
+                        <xAxis>
+                            <CategoryAxis side="BOTTOM" />
+                        </xAxis>
+                        <yAxis>
+                            <NumberAxis side="LEFT" />
+                        </yAxis>
+                    </LineChart>
+                </HBox>
+            </VBox>
+
+
+
+        </AnchorPane>
+
+
+
+    </Scene>
+  </scene>
+</fx:root>

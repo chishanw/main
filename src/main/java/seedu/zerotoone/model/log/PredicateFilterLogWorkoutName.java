@@ -10,10 +10,10 @@ import seedu.zerotoone.model.session.CompletedWorkout;
 /**
  * Tests that a {@code Session}'s {@code Name} matches any of the keywords given.
  */
-public class PredicateFilterLogExerciseName implements Predicate<CompletedWorkout> {
+public class PredicateFilterLogWorkoutName implements Predicate<CompletedWorkout> {
     private final List<String> keywords;
 
-    public PredicateFilterLogExerciseName(String keyword) {
+    public PredicateFilterLogWorkoutName(String keyword) {
         this.keywords = Arrays.asList(keyword.split("\\s+"));
     }
 
@@ -26,8 +26,8 @@ public class PredicateFilterLogExerciseName implements Predicate<CompletedWorkou
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof PredicateFilterLogExerciseName // instanceof handles nulls
-                && keywords.equals(((PredicateFilterLogExerciseName) other).keywords)); // state check
+                || (other instanceof PredicateFilterLogWorkoutName // instanceof handles nulls
+                && keywords.equals(((PredicateFilterLogWorkoutName) other).keywords)); // state check
     }
 
 }

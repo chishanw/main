@@ -4,6 +4,7 @@ import seedu.zerotoone.model.schedule.DateTime;
 import seedu.zerotoone.model.schedule.OneTimeSchedule;
 import seedu.zerotoone.model.schedule.Schedule;
 import seedu.zerotoone.model.schedule.ScheduleList;
+import seedu.zerotoone.model.util.SampleWorkoutDataUtil.SampleWorkoutIndex;
 import seedu.zerotoone.model.workout.Workout;
 
 /**
@@ -11,20 +12,20 @@ import seedu.zerotoone.model.workout.Workout;
  */
 public class SampleScheduleDataUtil {
     public static Schedule[] getSampleSchedules() {
-        Workout[] workouts = SampleWorkoutDataUtil.getSampleWorkouts();
         Schedule[] schedules = new Schedule[3];
+        Workout[] workouts = SampleWorkoutDataUtil.getSampleWorkouts();
 
-        // Schedule 1
-        DateTime scheduleOneDateTime = new DateTime("2020-05-11 13:00");
-        schedules[0] = new OneTimeSchedule(workouts[0], scheduleOneDateTime);
+        // Push Day
+        DateTime pushDayDateTime = new DateTime("2020-05-11 13:00");
+        schedules[0] = new OneTimeSchedule(workouts[SampleWorkoutIndex.PUSH_DAY], pushDayDateTime);
 
-        // Schedule 2
-        DateTime scheduleTwoDateTime = new DateTime("2020-05-05 23:00");
-        schedules[1] = new OneTimeSchedule(workouts[1], scheduleTwoDateTime);
+        // Pull Day
+        DateTime pullDayDateTime = new DateTime("2020-05-05 23:00");
+        schedules[1] = new OneTimeSchedule(workouts[SampleWorkoutIndex.PULL_DAY], pullDayDateTime);
 
-        // Schedule 3
-        DateTime scheduleThreeDateTime = new DateTime("2021-05-15 12:00");
-        schedules[2] = new OneTimeSchedule(workouts[2], scheduleThreeDateTime);
+        // Legs Day
+        DateTime legsDayDateTime = new DateTime("2021-05-15 12:00");
+        schedules[2] = new OneTimeSchedule(workouts[SampleWorkoutIndex.LEGS_DAY], legsDayDateTime);
         return schedules;
     }
 
@@ -36,4 +37,12 @@ public class SampleScheduleDataUtil {
         return sampleScheduleList;
     }
 
+    /**
+     * A convenience class to easily navigate within the array returned by getSampleSchedules()
+     */
+    class SampleScheduleIndex {
+        static final int PUSH_DAY = 0;
+        static final int PULL_DAY = 1;
+        static final int LEGS_DAY = 2;
+    }
 }

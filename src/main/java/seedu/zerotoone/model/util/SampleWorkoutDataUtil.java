@@ -4,10 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import seedu.zerotoone.model.exercise.Exercise;
-import seedu.zerotoone.model.exercise.ExerciseName;
-import seedu.zerotoone.model.exercise.ExerciseSet;
-import seedu.zerotoone.model.exercise.NumReps;
-import seedu.zerotoone.model.exercise.Weight;
+import seedu.zerotoone.model.util.SampleExerciseDataUtil.SampleExerciseIndex;
 import seedu.zerotoone.model.workout.ReadOnlyWorkoutList;
 import seedu.zerotoone.model.workout.Workout;
 import seedu.zerotoone.model.workout.WorkoutList;
@@ -19,46 +16,31 @@ import seedu.zerotoone.model.workout.WorkoutName;
 public class SampleWorkoutDataUtil {
     public static Workout[] getSampleWorkouts() {
         Workout[] workouts = new Workout[3];
+        Exercise[] exercises = SampleExerciseDataUtil.getSampleExercises();
 
-        // Workout 1
-        ExerciseName exerciseOneName = new ExerciseName("Bench Press");
-        List<ExerciseSet> exerciseOneSets = new ArrayList<>();
-        exerciseOneSets.add(new ExerciseSet(new Weight("60"), new NumReps("5")));
-        exerciseOneSets.add(new ExerciseSet(new Weight("60"), new NumReps("5")));
+        // Push Day
+        WorkoutName pushDayName = new WorkoutName("Push Day");
+        List<Exercise> pushDayExercises = new ArrayList<>();
+        pushDayExercises.add(exercises[SampleExerciseIndex.BENCH_PRESS]);
+        pushDayExercises.add(exercises[SampleExerciseIndex.OVERHEAD_PRESS]);
+        pushDayExercises.add(exercises[SampleExerciseIndex.TRICEPS_PUSHDOWN]);
+        workouts[SampleWorkoutIndex.PUSH_DAY] = new Workout(pushDayName, pushDayExercises);
 
-        WorkoutName workoutOneName = new WorkoutName("Legs Day");
-        List<Exercise> workoutOneExercises = new ArrayList<>();
-        workoutOneExercises.add(new Exercise(exerciseOneName, exerciseOneSets));
-        workoutOneExercises.add(new Exercise(exerciseOneName, exerciseOneSets));
-        workoutOneExercises.add(new Exercise(exerciseOneName, exerciseOneSets));
-        workouts[0] = new Workout(workoutOneName, workoutOneExercises);
+        // Pull Day
+        WorkoutName pullDayName = new WorkoutName("Pull Day");
+        List<Exercise> pullDayExercises = new ArrayList<>();
+        pullDayExercises.add(exercises[SampleExerciseIndex.DEADLIFT]);
+        pullDayExercises.add(exercises[SampleExerciseIndex.CABLE_ROW]);
+        pullDayExercises.add(exercises[SampleExerciseIndex.FACE_PULL]);
+        workouts[SampleWorkoutIndex.PULL_DAY] = new Workout(pullDayName, pullDayExercises);
 
-        // Workout 2
-        ExerciseName exerciseTwoName = new ExerciseName("Overhead Press");
-        List<ExerciseSet> exerciseTwoSets = new ArrayList<>();
-        exerciseTwoSets.add(new ExerciseSet(new Weight("30"), new NumReps("10")));
-        exerciseTwoSets.add(new ExerciseSet(new Weight("30"), new NumReps("10")));
-
-        WorkoutName workoutTwoName = new WorkoutName("Arms Day");
-        List<Exercise> workoutTwoExercises = new ArrayList<>();
-        workoutTwoExercises.add(new Exercise(exerciseTwoName, exerciseTwoSets));
-        workoutTwoExercises.add(new Exercise(exerciseTwoName, exerciseTwoSets));
-        workoutTwoExercises.add(new Exercise(exerciseTwoName, exerciseTwoSets));
-        workouts[1] = new Workout(workoutTwoName, workoutTwoExercises);
-
-        // Workout 3
-        ExerciseName exerciseThreeName = new ExerciseName("Triceps Pushdown");
-        List<ExerciseSet> exerciseThreeSets = new ArrayList<>();
-        exerciseThreeSets.add(new ExerciseSet(new Weight("15"), new NumReps("10")));
-        exerciseThreeSets.add(new ExerciseSet(new Weight("15"), new NumReps("10")));
-        exerciseThreeSets.add(new ExerciseSet(new Weight("15"), new NumReps("10")));
-
-        WorkoutName workoutThreeName = new WorkoutName("Strength");
-        List<Exercise> workoutThreeExercises = new ArrayList<>();
-        workoutThreeExercises.add(new Exercise(exerciseThreeName, exerciseThreeSets));
-        workoutThreeExercises.add(new Exercise(exerciseThreeName, exerciseThreeSets));
-        workoutThreeExercises.add(new Exercise(exerciseThreeName, exerciseThreeSets));
-        workouts[2] = new Workout(workoutThreeName, workoutThreeExercises);
+        // Legs Day
+        WorkoutName legsDayName = new WorkoutName("Legs Day");
+        List<Exercise> legsDayExercises = new ArrayList<>();
+        legsDayExercises.add(exercises[SampleExerciseIndex.SQUATS]);
+        legsDayExercises.add(exercises[SampleExerciseIndex.LEG_PRESS]);
+        legsDayExercises.add(exercises[SampleExerciseIndex.ROMANIAN_DEADLIFT]);
+        workouts[SampleWorkoutIndex.LEGS_DAY] = new Workout(legsDayName, legsDayExercises);
         return workouts;
     }
 
@@ -70,4 +52,12 @@ public class SampleWorkoutDataUtil {
         return sampleWorkoutList;
     }
 
+    /**
+     * A convenience class to easily navigate within the array returned by getSampleWorkouts()
+     */
+    class SampleWorkoutIndex {
+        static final int PUSH_DAY = 0;
+        static final int PULL_DAY = 1;
+        static final int LEGS_DAY = 2;
+    }
 }

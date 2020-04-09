@@ -8,6 +8,7 @@ import java.util.List;
 
 import seedu.zerotoone.commons.core.Messages;
 import seedu.zerotoone.commons.core.index.Index;
+import seedu.zerotoone.logic.commands.Command;
 import seedu.zerotoone.logic.commands.CommandResult;
 import seedu.zerotoone.logic.commands.exceptions.CommandException;
 import seedu.zerotoone.model.Model;
@@ -44,6 +45,9 @@ public class EditCommand extends WorkoutExerciseCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        if (model.isInSession()) {
+            throw new CommandException(Command.MESSAGE_SESSION_STARTED);
+        }
 
         List<Workout> lastShownWorkoutList = model.getFilteredWorkoutList();
         if (workoutId.getZeroBased() >= lastShownWorkoutList.size()) {

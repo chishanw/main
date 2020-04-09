@@ -7,6 +7,7 @@ import java.util.List;
 
 import seedu.zerotoone.commons.core.Messages;
 import seedu.zerotoone.commons.core.index.Index;
+import seedu.zerotoone.logic.commands.Command;
 import seedu.zerotoone.logic.commands.CommandResult;
 import seedu.zerotoone.logic.commands.exceptions.CommandException;
 import seedu.zerotoone.model.Model;
@@ -41,6 +42,10 @@ public class EditCommand extends ScheduleCommand {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        if (model.isInSession()) {
+            throw new CommandException(Command.MESSAGE_SESSION_STARTED);
+        }
+
         if (!DateTime.isDateEqualOrLaterThanToday(dateTime)) {
             throw new CommandException(MESSAGE_DATETIME_IN_THE_PAST);
         }

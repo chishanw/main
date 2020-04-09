@@ -2,7 +2,9 @@ package seedu.zerotoone.logic.commands.exercise;
 
 import static java.util.Objects.requireNonNull;
 
+import seedu.zerotoone.logic.commands.Command;
 import seedu.zerotoone.logic.commands.CommandResult;
+import seedu.zerotoone.logic.commands.exceptions.CommandException;
 import seedu.zerotoone.model.Model;
 import seedu.zerotoone.model.exercise.ExerciseName;
 import seedu.zerotoone.model.exercise.PredicateFilterExerciseName;
@@ -23,8 +25,12 @@ public class FindCommand extends ExerciseCommand {
     }
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        if (model.isInSession()) {
+            throw new CommandException(Command.MESSAGE_SESSION_STARTED);
+        }
+
         PredicateFilterExerciseName predicate = new PredicateFilterExerciseName(exerciseName.fullName);
 
         model.updateFilteredExerciseList(predicate);

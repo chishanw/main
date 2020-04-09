@@ -19,19 +19,21 @@ import seedu.zerotoone.testutil.exercise.TypicalExercises;
  */
 public class TypicalWorkouts {
     // Manually added - Workout's details found in {@code CommandTestUtil}
-    public static final Workout ARMS_WORKOUT = new WorkoutBuilder()
+    public static final WorkoutBuilder ARMS_WORKOUT_BUILDER = new WorkoutBuilder()
             .withWorkoutName(VALID_WORKOUT_NAME_ARMS_WORKOUT)
             .withWorkoutExercise(TypicalExercises.BENCH_PRESS)
-            .withWorkoutExercise(TypicalExercises.DEADLIFT)
-            .build();
-    public static final Workout LEGS_WORKOUT = new WorkoutBuilder()
+            .withWorkoutExercise(TypicalExercises.DEADLIFT);
+    public static final Workout ARMS_WORKOUT = ARMS_WORKOUT_BUILDER.build();
+
+    public static final WorkoutBuilder LEGS_WORKOUT_BUILDER = new WorkoutBuilder()
             .withWorkoutName(VALID_WORKOUT_NAME_LEGS_WORKOUT)
-            .withWorkoutExercise(VALID_EXERCISE_LUNGES)
-            .build();
-    public static final Workout ABS_WORKOUT = new WorkoutBuilder()
+            .withWorkoutExercise(VALID_EXERCISE_LUNGES);
+    public static final Workout LEGS_WORKOUT = LEGS_WORKOUT_BUILDER.build();
+
+    public static final WorkoutBuilder ABS_WORKOUT_BUILDER = new WorkoutBuilder()
             .withWorkoutName(VALID_WORKOUT_NAME_ABS_WORKOUT)
-            .withWorkoutExercise(VALID_EXERCISE_DUMBBELL_CRUNCH)
-            .build();
+            .withWorkoutExercise(VALID_EXERCISE_DUMBBELL_CRUNCH);
+    public static final Workout ABS_WORKOUT = ABS_WORKOUT_BUILDER.build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
@@ -42,13 +44,12 @@ public class TypicalWorkouts {
      */
     public static WorkoutList getTypicalWorkoutList() {
         WorkoutList el = new WorkoutList();
-        for (Workout workout : getTypicalWorkouts()) {
-            el.addWorkout(workout);
+        List<WorkoutBuilder> typicalWorkoutBuilders = new ArrayList<>(
+                Arrays.asList(ARMS_WORKOUT_BUILDER, LEGS_WORKOUT_BUILDER, ABS_WORKOUT_BUILDER));
+
+        for (WorkoutBuilder workoutBuilder : typicalWorkoutBuilders) {
+            el.addWorkout(workoutBuilder.build());
         }
         return el;
-    }
-
-    public static List<Workout> getTypicalWorkouts() {
-        return new ArrayList<>(Arrays.asList(ARMS_WORKOUT, LEGS_WORKOUT, ABS_WORKOUT));
     }
 }

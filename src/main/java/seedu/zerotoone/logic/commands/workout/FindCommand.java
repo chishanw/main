@@ -2,7 +2,9 @@ package seedu.zerotoone.logic.commands.workout;
 
 import static java.util.Objects.requireNonNull;
 
+import seedu.zerotoone.logic.commands.Command;
 import seedu.zerotoone.logic.commands.CommandResult;
+import seedu.zerotoone.logic.commands.exceptions.CommandException;
 import seedu.zerotoone.model.Model;
 import seedu.zerotoone.model.workout.PredicateFilterWorkoutName;
 import seedu.zerotoone.model.workout.WorkoutName;
@@ -23,8 +25,11 @@ public class FindCommand extends WorkoutCommand {
     }
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        if (model.isInSession()) {
+            throw new CommandException(Command.MESSAGE_SESSION_STARTED);
+        }
         PredicateFilterWorkoutName predicate = new PredicateFilterWorkoutName(workoutName.fullName);
 
         model.updateFilteredWorkoutList(predicate);

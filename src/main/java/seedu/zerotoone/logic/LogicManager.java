@@ -15,6 +15,7 @@ import seedu.zerotoone.logic.parser.exceptions.ParseException;
 import seedu.zerotoone.model.Model;
 import seedu.zerotoone.model.exercise.Exercise;
 import seedu.zerotoone.model.exercise.ReadOnlyExerciseList;
+import seedu.zerotoone.model.log.StatisticsData;
 import seedu.zerotoone.model.schedule.ScheduledWorkout;
 import seedu.zerotoone.model.session.CompletedSet;
 import seedu.zerotoone.model.session.CompletedWorkout;
@@ -103,6 +104,12 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public StatisticsData generateStatistics() {
+        return Statistics.generate(model.getLogListCopyAsArrayList(),
+            model.getStatisticsStartDateRange(), model.getStatisticsEndDateRange());
+    }
+
+    @Override
     public ObservableList<CompletedWorkout> getFilteredLogList() {
         return model.getFilteredLogList();
     }
@@ -158,4 +165,6 @@ public class LogicManager implements Logic {
     public void showdownTimer() {
         model.shutdownTimer();
     }
+
+
 }
