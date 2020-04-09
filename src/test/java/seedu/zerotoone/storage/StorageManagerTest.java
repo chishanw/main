@@ -3,6 +3,7 @@ package seedu.zerotoone.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static seedu.zerotoone.testutil.exercise.TypicalExercises.getTypicalExerciseList;
+import static seedu.zerotoone.testutil.schedule.TypicalSchedules.getTypicalScheduleList;
 import static seedu.zerotoone.testutil.workout.TypicalWorkouts.getTypicalWorkoutList;
 
 import java.nio.file.Path;
@@ -14,6 +15,7 @@ import org.junit.jupiter.api.io.TempDir;
 import seedu.zerotoone.commons.core.GuiSettings;
 import seedu.zerotoone.model.exercise.ExerciseList;
 import seedu.zerotoone.model.exercise.ReadOnlyExerciseList;
+import seedu.zerotoone.model.schedule.ScheduleList;
 import seedu.zerotoone.model.userprefs.UserPrefs;
 import seedu.zerotoone.model.workout.ReadOnlyWorkoutList;
 import seedu.zerotoone.model.workout.WorkoutList;
@@ -67,6 +69,8 @@ public class StorageManagerTest {
         assertEquals(original, retrieved);
     }
 
+    // -----------------------------------------------------------------------------------------
+    // Exercise List
     @Test
     public void exerciseListReadSave() throws Exception {
         /*
@@ -85,6 +89,8 @@ public class StorageManagerTest {
         assertNotNull(storageManager.getExerciseListFilePath());
     }
 
+    // -----------------------------------------------------------------------------------------
+    // Workout List
     @Test
     public void workoutListReadSave() throws Exception {
         /*
@@ -103,4 +109,23 @@ public class StorageManagerTest {
         assertNotNull(storageManager.getWorkoutListFilePath());
     }
 
+    // -----------------------------------------------------------------------------------------
+    // Schedule List
+    @Test
+    public void scheduleListReadSave() throws Exception {
+        /*
+         * Note: This is an integration test that verifies the StorageManager is properly wired to the
+         * {@link JsonScheduleListStorage} class.
+         * More extensive testing of UserPref saving/reading is done in {@link JsonScheduleListStorageTest} class.
+         */
+        ScheduleList original = getTypicalScheduleList();
+        storageManager.saveScheduleList(original);
+        ScheduleList retrieved = storageManager.readScheduleList().get();
+        assertEquals(original, new ScheduleList(retrieved));
+    }
+
+    @Test
+    public void getScheduleListFilePath() {
+        assertNotNull(storageManager.getScheduleListFilePath());
+    }
 }

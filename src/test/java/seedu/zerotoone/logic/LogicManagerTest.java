@@ -114,6 +114,11 @@ public class LogicManagerTest {
         assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredWorkoutList().remove(0));
     }
 
+    @Test
+    void getSortedScheduledWorkoutList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getSortedScheduledWorkoutList().remove(0));
+    }
+
     /**
      * A stub class to throw an {@code IOException} when the save method is called.
      */

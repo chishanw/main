@@ -27,11 +27,6 @@ public class ScheduledWorkoutList implements ReadOnlyScheduledWorkoutList {
 
     public ScheduledWorkoutList() {}
 
-    public ScheduledWorkoutList(ReadOnlyScheduledWorkoutList toBeCopied) {
-        this();
-        resetData(toBeCopied);
-    }
-
 
     //// list overwrite operations
 
@@ -51,45 +46,6 @@ public class ScheduledWorkoutList implements ReadOnlyScheduledWorkoutList {
 
         setScheduledWorkouts(newData.getScheduledWorkoutList());
     }
-
-    //// scheduledWorkout-level operations
-
-    // /**
-    //  * Returns true if a scheduledWorkout with the same identity as {@code scheduledWorkout} exists in the
-    //  * scheduledWorkout list.
-    //  */
-    // public boolean hasScheduledWorkout(ScheduledWorkout scheduledWorkout) {
-    //     requireNonNull(scheduledWorkout);
-    //     return scheduledWorkouts.contains(scheduledWorkout);
-    // }
-    //
-    // /**
-    //  * Adds a scheduledWorkout to the scheduledWorkout list.
-    //  * The scheduledWorkout must not already exist in the scheduledWorkout list.
-    //  */
-    // public void addScheduledWorkout(ScheduledWorkout p) {
-    //     scheduledWorkouts.add(p);
-    // }
-
-    // /**
-    //  * Replaces the given scheduledWorkout {@code target} in the list with {@code editedScheduledWorkout}.
-    //  * {@code target} must exist in the scheduledWorkout list.
-    //  * The scheduledWorkout identity of {@code editedScheduledWorkout} must not be the same as another existing
-    //  * scheduledWorkout in the scheduledWorkout list.
-    //  */
-    // public void setScheduledWorkout(ScheduledWorkout target, ScheduledWorkout editedScheduledWorkout) {
-    //     requireNonNull(editedScheduledWorkout);
-    //
-    //     scheduledWorkouts.setScheduledWorkout(target, editedScheduledWorkout);
-    // }
-
-    // /**
-    //  * Removes {@code key} from this {@code ScheduledWorkoutList}.
-    //  * {@code key} must exist in the scheduledWorkout list.
-    //  */
-    // public void removeScheduledWorkout(ScheduledWorkout key) {
-    //     scheduledWorkouts.remove(key);
-    // }
 
     //// util methods
 

@@ -24,7 +24,7 @@ public class EditCommand extends ScheduleCommand {
     public static final String MESSAGE_USAGE = "Usage: schedule edit SCHEDULED_WORKOUT_ID d/<datetime>";
     public static final String MESSAGE_EDIT_SCHEDULE_SUCCESS = "Edited schedule: %1$s";
     public static final String MESSAGE_DUPLICATE_SCHEDULE = "This schedule already exists.";
-    private static final String MESSAGE_DATETIME_IN_THE_PAST = "Datetime provided is in the past";
+    public static final String MESSAGE_DATETIME_IN_THE_PAST = "Datetime provided is in the past";
 
     private final Index scheduledWorkoutId;
     private final DateTime dateTime;

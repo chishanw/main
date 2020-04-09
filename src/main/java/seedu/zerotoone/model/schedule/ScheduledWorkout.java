@@ -42,7 +42,7 @@ public class ScheduledWorkout {
         return dateTime;
     }
 
-    public Boolean isOutDated() {
+    public boolean isOutDated() {
         return dateTime.compareTo(dateTimeNow) < 0;
     }
 

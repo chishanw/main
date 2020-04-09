@@ -67,6 +67,15 @@ public class CreateCommand extends ScheduleCommand {
 
     @Override
     public boolean equals(Object other) {
-        return other == this; // short circuit if same object
+        if (other == this) {
+            return true;
+        } else if (!(other instanceof CreateCommand)) {
+            return false;
+        }
+
+        // state check
+        CreateCommand otherCommand = (CreateCommand) other;
+        return workoutId.equals(otherCommand.workoutId)
+                && dateTime.equals(otherCommand.dateTime);
     }
 }

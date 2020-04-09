@@ -1,13 +1,16 @@
-package seedu.zerotoone.logic.commands.exercise;
+package seedu.zerotoone.logic.commands.schedule;
 
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.zerotoone.testutil.Assert.assertThrows;
-import static seedu.zerotoone.testutil.exercise.ExerciseCommandTestUtil.VALID_EXERCISE_NAME_BENCH_PRESS;
-import static seedu.zerotoone.testutil.exercise.TypicalExercises.BENCH_PRESS;
-import static seedu.zerotoone.testutil.exercise.TypicalExercises.DEADLIFT;
+import static seedu.zerotoone.testutil.TypicalIndexes.INDEX_FIRST_OBJECT;
+import static seedu.zerotoone.testutil.TypicalIndexes.INDEX_SECOND_OBJECT;
+import static seedu.zerotoone.testutil.exercise.TypicalExercises.getTypicalExerciseList;
+import static seedu.zerotoone.testutil.schedule.ScheduleCommandTestUtil.VALID_DATETIME_IN_THE_PAST;
+import static seedu.zerotoone.testutil.schedule.ScheduleCommandTestUtil.VALID_DATETIME_JUNE;
+import static seedu.zerotoone.testutil.workout.TypicalWorkouts.getTypicalWorkoutList;
 
 import java.nio.file.Path;
 import java.time.LocalDateTime;
@@ -20,14 +23,18 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.zerotoone.commons.core.GuiSettings;
+import seedu.zerotoone.commons.core.Messages;
+import seedu.zerotoone.commons.core.index.Index;
+import seedu.zerotoone.logic.commands.Command;
 import seedu.zerotoone.logic.commands.CommandResult;
 import seedu.zerotoone.logic.commands.exceptions.CommandException;
 import seedu.zerotoone.model.Model;
+import seedu.zerotoone.model.ModelManager;
 import seedu.zerotoone.model.exercise.Exercise;
-import seedu.zerotoone.model.exercise.ExerciseList;
-import seedu.zerotoone.model.exercise.ExerciseName;
 import seedu.zerotoone.model.exercise.ReadOnlyExerciseList;
+import seedu.zerotoone.model.log.LogList;
 import seedu.zerotoone.model.log.ReadOnlyLogList;
+import seedu.zerotoone.model.schedule.DateTime;
 import seedu.zerotoone.model.schedule.Schedule;
 import seedu.zerotoone.model.schedule.ScheduleList;
 import seedu.zerotoone.model.schedule.ScheduledWorkout;
@@ -38,61 +45,111 @@ import seedu.zerotoone.model.session.ReadOnlyCompletedSetList;
 import seedu.zerotoone.model.session.ReadOnlyOngoingSetList;
 import seedu.zerotoone.model.session.ReadOnlyTimerList;
 import seedu.zerotoone.model.userprefs.ReadOnlyUserPrefs;
+import seedu.zerotoone.model.userprefs.UserPrefs;
 import seedu.zerotoone.model.workout.ReadOnlyWorkoutList;
 import seedu.zerotoone.model.workout.Workout;
-import seedu.zerotoone.testutil.exercise.ExerciseBuilder;
-
+import seedu.zerotoone.model.workout.WorkoutList;
+import seedu.zerotoone.testutil.schedule.OneTimeScheduleBuilder;
 
 public class CreateCommandTest {
 
+    private Model model = new ModelManager(new UserPrefs(),
+            getTypicalExerciseList(),
+            getTypicalWorkoutList(),
+            new ScheduleList(),
+            new LogList());
+
     @Test
-    public void constructor_nullExercise_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new CreateCommand(null));
+    public void constructor_nullPerson_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new CreateCommand(null, null));
     }
 
     @Test
-    public void execute_exerciseAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingExerciseAdded modelStub = new ModelStubAcceptingExerciseAdded();
-        CommandResult commandResult = new CreateCommand(new ExerciseName(VALID_EXERCISE_NAME_BENCH_PRESS))
-                .execute(modelStub);
-        Exercise exerciseBenchPress = new ExerciseBuilder().withExerciseName(VALID_EXERCISE_NAME_BENCH_PRESS).build();
+    public void execute_scheduleAcceptedByModel_addSuccessful() throws Exception {
+        Index index = INDEX_FIRST_OBJECT;
+        Workout workout = model.getFilteredWorkoutList().get(index.getZeroBased());
+        DateTime dateTime = new DateTime(VALID_DATETIME_JUNE);
+        CreateCommand createCommand = new CreateCommand(index, dateTime);
 
-        assertEquals(String.format(CreateCommand.MESSAGE_SUCCESS,
-                VALID_EXERCISE_NAME_BENCH_PRESS), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(exerciseBenchPress), modelStub.exercisesAdded);
+        ModelStubAcceptingScheduleAdded modelStub = new ModelStubAcceptingScheduleAdded();
+        CommandResult commandResult = createCommand.execute(modelStub);
+        Schedule expectedSchedule = new OneTimeScheduleBuilder().withWorkout(workout).withDateTime(dateTime).build();
+
+        assertEquals(
+                String.format(CreateCommand.MESSAGE_SUCCESS, expectedSchedule),
+                commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(expectedSchedule), modelStub.schedulesAdded);
     }
 
     @Test
-    public void execute_duplicateExercise_throwsCommandException() {
-        Exercise validExercise = new ExerciseBuilder().build();
-        CreateCommand createCommand = new CreateCommand(BENCH_PRESS.getExerciseName());
-        ModelStub modelStub = new ModelStubWithExercise(validExercise);
+    public void execute_modelInSession_throwsCommandException() {
+        DateTime dateTime = new DateTime(VALID_DATETIME_JUNE);
+        CreateCommand createCommand = new CreateCommand(INDEX_FIRST_OBJECT, dateTime);
+        Model model = new ModelStubInSession();
 
-        assertThrows(
-                CommandException.class, CreateCommand.MESSAGE_DUPLICATE_EXERCISE, () ->
-                createCommand.execute(modelStub));
+        assertThrows(CommandException.class,
+                Command.MESSAGE_SESSION_STARTED, () -> createCommand.execute(model));
+    }
+
+    @Test
+    public void execute_datetimeInThePast_throwsCommandException() {
+        DateTime dateTime = new DateTime(VALID_DATETIME_IN_THE_PAST);
+        CreateCommand createCommand = new CreateCommand(INDEX_FIRST_OBJECT, dateTime);
+
+        assertThrows(CommandException.class,
+                CreateCommand.MESSAGE_DATETIME_IN_THE_PAST, () -> createCommand.execute(model));
+    }
+
+    @Test
+    public void execute_invalidIndex_throwsCommandException() {
+        DateTime dateTime = new DateTime(VALID_DATETIME_JUNE);
+        CreateCommand createCommand = new CreateCommand(INDEX_FIRST_OBJECT, dateTime);
+
+        Model modelWithNoWorkout = new ModelManager(model.getUserPrefs(),
+                model.getExerciseList(),
+                new WorkoutList(),
+                model.getScheduleList(),
+                model.getLogList());
+
+        assertThrows(CommandException.class,
+                Messages.MESSAGE_INVALID_INDEX, () -> createCommand.execute(modelWithNoWorkout));
+    }
+
+    @Test
+    public void execute_duplicateSchedule_throwsCommandException() {
+        Workout workout = model.getFilteredWorkoutList().get(0);
+        DateTime dateTime = new DateTime(VALID_DATETIME_JUNE);
+        CreateCommand createCommand = new CreateCommand(INDEX_FIRST_OBJECT, dateTime);
+
+        Schedule expectedSchedule = new OneTimeScheduleBuilder().withWorkout(workout).withDateTime(dateTime).build();
+
+        Model modelWithSchedule = new ModelStubWithSchedule(expectedSchedule);
+
+        assertThrows(CommandException.class,
+                CreateCommand.MESSAGE_DUPLICATE_SCHEDULE, () -> createCommand.execute(modelWithSchedule));
     }
 
     @Test
     public void equals() {
-        CreateCommand addBenchPressCommand = new CreateCommand(BENCH_PRESS.getExerciseName());
-        CreateCommand addDeadliftCommand = new CreateCommand(DEADLIFT.getExerciseName());
+        DateTime dateTime = new DateTime(VALID_DATETIME_JUNE);
+        CreateCommand addFirstWorkoutCommand = new CreateCommand(INDEX_FIRST_OBJECT, dateTime);
+        CreateCommand addSecondWorkoutCommand = new CreateCommand(INDEX_SECOND_OBJECT, dateTime);
 
         // same object -> returns true
-        assertTrue(addBenchPressCommand.equals(addBenchPressCommand));
+        assertTrue(addFirstWorkoutCommand.equals(addFirstWorkoutCommand));
 
         // same values -> returns true
-        CreateCommand addBenchPressCommandCopy = new CreateCommand(BENCH_PRESS.getExerciseName());
-        assertTrue(addBenchPressCommand.equals(addBenchPressCommandCopy));
+        CreateCommand addFirstWorkoutCommandCopy = new CreateCommand(INDEX_FIRST_OBJECT, dateTime);
+        assertTrue(addFirstWorkoutCommand.equals(addFirstWorkoutCommandCopy));
 
         // different types -> returns false
-        assertFalse(addBenchPressCommand.equals(1));
+        assertFalse(addFirstWorkoutCommand.equals(1));
 
         // null -> returns false
-        assertFalse(addBenchPressCommand.equals(null));
+        assertFalse(addFirstWorkoutCommand.equals(null));
 
-        // different exercise -> returns false
-        assertFalse(addBenchPressCommand.equals(addDeadliftCommand));
+        // different index -> returns false
+        assertFalse(addFirstWorkoutCommand.equals(addSecondWorkoutCommand));
     }
 
     /**
@@ -197,18 +254,16 @@ public class CreateCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
-        @Override
         public boolean hasWorkout(Workout workout) {
             throw new AssertionError("This method should not be called.");
         }
 
-        @Override
         public void deleteWorkout(Workout target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deleteExerciseFromWorkouts(Exercise target) {
+        public void deleteExerciseFromWorkouts(Exercise exercise) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -236,7 +291,7 @@ public class CreateCommandTest {
         // Session
         @Override
         public boolean isInSession() {
-            throw new AssertionError("This method should not be called.");
+            return false;
         }
 
         @Override
@@ -349,12 +404,12 @@ public class CreateCommandTest {
 
         @Override
         public Optional<LocalDateTime> getStatisticsStartDateRange() {
-            throw new AssertionError("This method should not be called.");
+            return Optional.empty();
         }
 
         @Override
         public Optional<LocalDateTime> getStatisticsEndDateRange() {
-            throw new AssertionError("This method should not be called.");
+            return Optional.empty();
         }
 
         @Override
@@ -374,55 +429,59 @@ public class CreateCommandTest {
     }
 
     /**
-     * A Model stub that contains a single exercise.
+     * A Model stub that contains a single schedule.
      */
-    private class ModelStubWithExercise extends ModelStub {
-        private final Exercise exercise;
+    private class ModelStubWithSchedule extends ModelStub {
+        private final Schedule schedule;
 
-        ModelStubWithExercise(Exercise exercise) {
-            requireNonNull(exercise);
-            this.exercise = exercise;
+        ModelStubWithSchedule(Schedule schedule) {
+            requireNonNull(schedule);
+            this.schedule = schedule;
         }
 
         @Override
-        public boolean isInSession() {
-            return false;
+        public boolean hasSchedule(Schedule schedule) {
+            requireNonNull(schedule);
+            return this.schedule.isSameSchedule(schedule);
         }
 
         @Override
-        public boolean hasExercise(Exercise exercise) {
-            requireNonNull(exercise);
-            return this.exercise.isSameExercise(exercise);
+        public ObservableList<Workout> getFilteredWorkoutList() {
+            return model.getFilteredWorkoutList();
         }
     }
 
     /**
-     * A Model stub that always accept the exercise being added.
+     * A Model stub that always accept the schedule being added.
      */
-    private class ModelStubAcceptingExerciseAdded extends ModelStub {
-        final ArrayList<Exercise> exercisesAdded = new ArrayList<>();
+    private class ModelStubAcceptingScheduleAdded extends ModelStub {
+        final ArrayList<Schedule> schedulesAdded = new ArrayList<>();
 
         @Override
-        public boolean isInSession() {
-            return false;
+        public boolean hasSchedule(Schedule schedule) {
+            requireNonNull(schedule);
+            return schedulesAdded.stream().anyMatch(schedule::isSameSchedule);
         }
 
         @Override
-        public boolean hasExercise(Exercise exercise) {
-            requireNonNull(exercise);
-            return exercisesAdded.stream().anyMatch(exercise::isSameExercise);
+        public void addSchedule(Schedule schedule) {
+            requireNonNull(schedule);
+            schedulesAdded.add(schedule);
         }
 
         @Override
-        public void addExercise(Exercise exercise) {
-            requireNonNull(exercise);
-            exercisesAdded.add(exercise);
-        }
-
-        @Override
-        public ReadOnlyExerciseList getExerciseList() {
-            return new ExerciseList();
+        public ObservableList<Workout> getFilteredWorkoutList() {
+            return model.getFilteredWorkoutList();
         }
     }
 
+    /**
+     * A Model stub that is always in session.
+     */
+    private class ModelStubInSession extends ModelStub {
+        @Override
+        public boolean isInSession() {
+            return true;
+        }
+    }
 }

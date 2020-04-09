@@ -91,4 +91,17 @@ public class Scheduler {
     public void setScheduledWorkouts(List<ScheduledWorkout> scheduledWorkouts) {
         this.scheduledWorkoutList.setScheduledWorkouts(scheduledWorkouts);
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+
+        Scheduler other = (Scheduler) obj;
+        return scheduleList.equals(other.scheduleList);
+    }
 }

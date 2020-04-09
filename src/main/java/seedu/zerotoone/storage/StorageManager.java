@@ -116,6 +116,7 @@ public class StorageManager implements Storage {
         workoutListStorage.saveWorkoutList(workoutList, filePath);
     }
 
+    // -----------------------------------------------------------------------------------------
     // Schedule List
     @Override
     public Path getScheduleListFilePath() {
@@ -144,8 +145,8 @@ public class StorageManager implements Storage {
         scheduleListStorage.saveScheduleList(scheduleList, filePath);
     }
 
+    // -----------------------------------------------------------------------------------------
     // Session List
-
     @Override
     public Path getLogListFilePath() {
         return logListStorage.getLogListFilePath();

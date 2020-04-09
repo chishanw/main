@@ -1,0 +1,51 @@
+{
+  "schedules": [
+    {
+      "workoutToSchedule": {
+        "workoutName": "inValid#&*#Nam",
+        "workoutExercises": [
+          {
+            "exerciseName": "Bench Press",
+            "exerciseSets": [
+              {
+                "weight": "60",
+                "numReps": "10"
+              }
+            ]
+          },
+          {
+            "exerciseName": "Deadlift",
+            "exerciseSets": [
+              {
+                "weight": "65",
+                "numReps": "5"
+              }
+            ]
+          }
+        ]
+      },
+      "dateTime": {
+        "dateTime": "2020-06-01 13:00"
+      }
+    },
+    {
+      "workoutToSchedule": {
+        "workoutName": "Legs Workout",
+        "workoutExercises": [
+          {
+            "exerciseName": "Lunges",
+            "exerciseSets": [
+              {
+                "weight": "30",
+                "numReps": "4"
+              }
+            ]
+          }
+        ]
+      },
+      "dateTime": {
+        "dateTime": "2020-07-01 13:00"
+      }
+    }
+  ]
+}

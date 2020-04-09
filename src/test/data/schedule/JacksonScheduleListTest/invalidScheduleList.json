@@ -1,0 +1,163 @@
+{
+  "schedules": [
+    {
+      "workoutToSchedule": {
+        "workoutName": "Legs Day",
+        "workoutExercises": [
+          {
+            "exerciseName": "Bench Press",
+            "exerciseSets": [
+              {
+                "weight": "60",
+                "numReps": "5"
+              },
+              {
+                "weight": "60",
+                "numReps": "5"
+              }
+            ]
+          },
+          {
+            "exerciseName": "Bench Press",
+            "exerciseSets": [
+              {
+                "weight": "60",
+                "numReps": "5"
+              },
+              {
+                "weight": "60",
+                "numReps": "5"
+              }
+            ]
+          },
+          {
+            "exerciseName": "Bench Press",
+            "exerciseSets": [
+              {
+                "weight": "60",
+                "numReps": "5"
+              },
+              {
+                "weight": "60",
+                "numReps": "5"
+              }
+            ]
+          }
+        ]
+      },
+      "dateTime": {
+        "dateTime": "2020-05-11 1300"
+      }
+    },
+    {
+      "workoutToSchedule": {
+        "workoutName": "Arms Day",
+        "workoutExercises": [
+          {
+            "exerciseName": "Overhead Press",
+            "exerciseSets": [
+              {
+                "weight": "30",
+                "numReps": "10"
+              },
+              {
+                "weight": "30",
+                "numReps": "10"
+              }
+            ]
+          },
+          {
+            "exerciseName": "Overhead Press",
+            "exerciseSets": [
+              {
+                "weight": "30",
+                "numReps": "10"
+              },
+              {
+                "weight": "30",
+                "numReps": "10"
+              }
+            ]
+          },
+          {
+            "exerciseName": "Overhead Press",
+            "exerciseSets": [
+              {
+                "weight": "30",
+                "numReps": "10"
+              },
+              {
+                "weight": "30",
+                "numReps": "10"
+              }
+            ]
+          }
+        ]
+      },
+      "dateTime": {
+        "dateTime": "2020-05-05 23:00"
+      }
+    },
+    {
+      "workoutToSchedule": {
+        "workoutName": "Strength",
+        "workoutExercises": [
+          {
+            "exerciseName": "Triceps Pushdown",
+            "exerciseSets": [
+              {
+                "weight": "15",
+                "numReps": "10"
+              },
+              {
+                "weight": "15",
+                "numReps": "10"
+              },
+              {
+                "weight": "15",
+                "numReps": "10"
+              }
+            ]
+          },
+          {
+            "exerciseName": "Triceps Pushdown",
+            "exerciseSets": [
+              {
+                "weight": "15",
+                "numReps": "10"
+              },
+              {
+                "weight": "15",
+                "numReps": "10"
+              },
+              {
+                "weight": "15",
+                "numReps": "10"
+              }
+            ]
+          },
+          {
+            "exerciseName": "Triceps Pushdown",
+            "exerciseSets": [
+              {
+                "weight": "15",
+                "numReps": "10"
+              },
+              {
+                "weight": "15",
+                "numReps": "10"
+              },
+              {
+                "weight": "15",
+                "numReps": "10"
+              }
+            ]
+          }
+        ]
+      },
+      "dateTime": {
+        "dateTime": "2021-05-15 12:00"
+      }
+    }
+  ]
+}

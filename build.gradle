@@ -37,8 +37,11 @@ githook {
     failOnMissingHooksDir = false
     createHooksDirIfNotExist = true
     hooks {
+        "pre-commit" {
+            task = "checkstyleMain checkstyleTest"
+        }
         "pre-push" {
-            task = "checkstyleMain checkstyleTest test"
+            task = "clean checkstyleMain checkstyleTest test"
             shell = "bash config/travis/run-checks.sh"
         }
     }
