@@ -62,9 +62,22 @@ public class WorkoutBuilder {
         return this;
     }
 
+    /**
+     * Exercises the {@code workoutExercises} of the {@code Workout} that we are building.
+     */
     public WorkoutBuilder setWorkoutExercise(Index target, Exercise newExercise) {
         List<Exercise> workoutExercisesCopy = new ArrayList<>(workoutExercises);
         workoutExercisesCopy.set(target.getZeroBased(), newExercise);
+        workoutExercises = workoutExercisesCopy;
+        return this;
+    }
+
+    /**
+     * Exercises the {@code workoutExercises} of the {@code Workout} that we are building.
+     */
+    public WorkoutBuilder deleteWorkoutExercise(Exercise exerciseToDelete) {
+        List<Exercise> workoutExercisesCopy = new ArrayList<>(workoutExercises);
+        workoutExercisesCopy.remove(exerciseToDelete);
         workoutExercises = workoutExercisesCopy;
         return this;
     }
