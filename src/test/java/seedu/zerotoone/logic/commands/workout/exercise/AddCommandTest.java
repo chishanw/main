@@ -6,11 +6,16 @@ import static seedu.zerotoone.testutil.Assert.assertThrows;
 import static seedu.zerotoone.testutil.CommandTestUtil.assertCommandSuccess;
 import static seedu.zerotoone.testutil.TypicalIndexes.INDEX_FIRST_OBJECT;
 import static seedu.zerotoone.testutil.TypicalIndexes.INDEX_SECOND_OBJECT;
+import static seedu.zerotoone.testutil.exercise.ExerciseCommandTestUtil.showExerciseAtIndex;
 import static seedu.zerotoone.testutil.exercise.TypicalExercises.getTypicalExerciseList;
 import static seedu.zerotoone.testutil.workout.TypicalWorkouts.getTypicalWorkoutList;
+import static seedu.zerotoone.testutil.workout.WorkoutCommandTestUtil.assertCommandFailure;
+import static seedu.zerotoone.testutil.workout.WorkoutCommandTestUtil.showWorkoutAtIndex;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.zerotoone.commons.core.Messages;
+import seedu.zerotoone.commons.core.index.Index;
 import seedu.zerotoone.model.Model;
 import seedu.zerotoone.model.ModelManager;
 import seedu.zerotoone.model.exercise.Exercise;
@@ -18,6 +23,7 @@ import seedu.zerotoone.model.log.LogList;
 import seedu.zerotoone.model.schedule.ScheduleList;
 import seedu.zerotoone.model.userprefs.UserPrefs;
 import seedu.zerotoone.model.workout.Workout;
+import seedu.zerotoone.testutil.exercise.ExerciseBuilder;
 import seedu.zerotoone.testutil.workout.WorkoutBuilder;
 
 
@@ -52,6 +58,41 @@ public class AddCommandTest {
         expectedModel.setWorkout(workoutToEdit, editedWorkout);
 
         assertCommandSuccess(addCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_invalidWorkoutIndexFilteredList_throwsCommandException() {
+        showWorkoutAtIndex(model, INDEX_FIRST_OBJECT);
+
+        Index outOfBoundIndex = INDEX_SECOND_OBJECT;
+        // ensures that outOfBoundIndex is still in bounds of exercise list
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getWorkoutList().getWorkoutList().size());
+
+        AddCommand addCommand = new AddCommand(outOfBoundIndex, INDEX_FIRST_OBJECT);
+
+        assertCommandFailure(addCommand, model, Messages.MESSAGE_INVALID_INDEX);
+    }
+
+    @Test
+    public void execute_invalidExerciseIndexFilteredList_throwsCommandException() {
+        showExerciseAtIndex(model, INDEX_FIRST_OBJECT);
+
+        Index outOfBoundIndex = INDEX_SECOND_OBJECT;
+        // ensures that outOfBoundIndex is still in bounds of exercise list
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getWorkoutList().getWorkoutList().size());
+
+        AddCommand addCommand = new AddCommand(INDEX_FIRST_OBJECT, outOfBoundIndex);
+
+        assertCommandFailure(addCommand, model, Messages.MESSAGE_INVALID_INDEX);
+    }
+
+    @Test
+    public void execute_emptyExercise_throwsCommandException() {
+        Exercise emptyExercise = new ExerciseBuilder().withExerciseName("Empty exercise").build();
+        model.addExercise(emptyExercise);
+        AddCommand addCommand = new AddCommand(INDEX_FIRST_OBJECT,
+                Index.fromOneBased(model.getFilteredExerciseList().size()));
+        assertCommandFailure(addCommand, model, Messages.MESSAGE_INVALID_WORKOUT_EXERCISE);
     }
 
     @Test
