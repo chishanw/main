@@ -25,4 +25,10 @@ public class ListCommand extends WorkoutCommand {
         model.updateFilteredWorkoutList(PREDICATE_SHOW_ALL_WORKOUTS);
         return new CommandResult(MESSAGE_SUCCESS);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ListCommand); // instanceof handles nulls
+    }
 }
