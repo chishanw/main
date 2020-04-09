@@ -80,7 +80,6 @@ public class WorkoutCommandTestUtil extends CommandTestUtil {
         Workout workout = model.getFilteredWorkoutList().get(targetIndex.getZeroBased());
         final String workoutName = workout.getWorkoutName().fullName;
         model.updateFilteredWorkoutList(new PredicateFilterWorkoutName(workoutName));
-
         assertEquals(1, model.getFilteredWorkoutList().size());
     }
 }

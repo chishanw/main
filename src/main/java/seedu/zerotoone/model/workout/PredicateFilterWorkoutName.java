@@ -19,7 +19,7 @@ public class PredicateFilterWorkoutName implements Predicate<Workout> {
     @Override
     public boolean test(Workout exercise) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(exercise.getWorkoutName().fullName, keyword));
+                .anyMatch(keyword -> StringUtil.containsSubstringIgnoreCase(exercise.getWorkoutName().fullName, keyword));
     }
 
     @Override

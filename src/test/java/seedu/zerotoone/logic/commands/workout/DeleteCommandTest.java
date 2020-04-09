@@ -8,6 +8,7 @@ import static seedu.zerotoone.testutil.TypicalIndexes.INDEX_SECOND_OBJECT;
 import static seedu.zerotoone.testutil.exercise.TypicalExercises.getTypicalExerciseList;
 import static seedu.zerotoone.testutil.workout.TypicalWorkouts.getTypicalWorkoutList;
 import static seedu.zerotoone.testutil.workout.WorkoutCommandTestUtil.assertCommandFailure;
+import static seedu.zerotoone.testutil.workout.WorkoutCommandTestUtil.showWorkoutAtIndex;
 
 import org.junit.jupiter.api.Test;
 
@@ -59,8 +60,40 @@ public class DeleteCommandTest {
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_INDEX);
     }
 
-    // TODO: execute_validIndexFilteredList_success() & execute_invalidIndexFilteredList_throwsCommandException()
-    // Problem with ShowWorkoutAtIndex
+    @Test
+    public void execute_validIndexFilteredList_success() {
+        showWorkoutAtIndex(model, INDEX_FIRST_OBJECT);
+
+        Workout workoutToDelete = model.getFilteredWorkoutList().get(INDEX_FIRST_OBJECT.getZeroBased());
+        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_OBJECT);
+
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_WORKOUT_SUCCESS,
+                workoutToDelete.getWorkoutName());
+
+        ModelManager expectedModel = new ModelManager(new UserPrefs(),
+                model.getExerciseList(),
+                model.getWorkoutList(),
+                model.getScheduleList(),
+                model.getLogList());
+
+        expectedModel.deleteWorkout(workoutToDelete);
+        showNoWorkout(expectedModel);
+
+        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_invalidIndexFilteredList_throwsCommandException() {
+        showWorkoutAtIndex(model, INDEX_FIRST_OBJECT);
+
+        Index outOfBoundIndex = INDEX_SECOND_OBJECT;
+        // ensures that outOfBoundIndex is still in bounds of exercise list
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getWorkoutList().getWorkoutList().size());
+
+        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
+
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_INDEX);
+    }
 
     @Test
     public void equals() {
