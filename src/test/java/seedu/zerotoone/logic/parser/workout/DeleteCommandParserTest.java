@@ -1,5 +1,6 @@
 package seedu.zerotoone.logic.parser.workout;
 
+import static seedu.zerotoone.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.zerotoone.logic.parser.util.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.zerotoone.testutil.CommandParserTestUtil.assertParseFailure;
 import static seedu.zerotoone.testutil.CommandParserTestUtil.assertParseSuccess;
@@ -28,5 +29,10 @@ public class DeleteCommandParserTest {
     @Test
     public void parse_invalidArgs_throwsParseException() {
         assertParseFailure(parser, "a", MESSAGE_INVALID_INDEX);
+    }
+
+    @Test
+    public void parse_nullArgs_throwsParseException() {
+        assertParseFailure(parser, "", String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
     }
 }
