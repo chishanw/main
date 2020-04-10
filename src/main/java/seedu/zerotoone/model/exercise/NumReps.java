@@ -9,7 +9,8 @@ import static seedu.zerotoone.commons.util.AppUtil.checkArgument;
  */
 public class NumReps {
 
-    public static final String MESSAGE_CONSTRAINTS = "Number of repetitions should be a non-negative number.";
+    public static final String MESSAGE_CONSTRAINTS =
+            "Number of repetitions should be a positive number starting from 1.";
 
     /*
      * The first character of the number of repetitions must not be a whitespace,

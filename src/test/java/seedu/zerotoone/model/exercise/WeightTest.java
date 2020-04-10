@@ -1,8 +1,7 @@
 package seedu.zerotoone.model.exercise;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.zerotoone.testutil.Assert.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
@@ -15,25 +14,43 @@ public class WeightTest {
 
     @Test
     public void constructor_invalidWeight_throwsIllegalArgumentException() {
-        String invalidWeight = "";
-        assertThrows(IllegalArgumentException.class, () -> new Weight(invalidWeight));
+        Exception exceptionThrown;
+        String expectedMessage = Weight.MESSAGE_CONSTRAINTS;
+
+        // empty string
+        exceptionThrown = assertThrows(IllegalArgumentException.class, () -> new Weight(""));
+        assertEquals(expectedMessage, exceptionThrown.getMessage());
+
+        // spaces only
+        exceptionThrown = assertThrows(IllegalArgumentException.class, () -> new Weight(" "));
+        assertEquals(expectedMessage, exceptionThrown.getMessage());
+
+        // non-numeric
+        exceptionThrown = assertThrows(IllegalArgumentException.class, () -> new Weight("asdf"));
+        assertEquals(expectedMessage, exceptionThrown.getMessage());
+
+        // starts with zero
+        exceptionThrown = assertThrows(IllegalArgumentException.class, () -> new Weight("01"));
+        assertEquals(expectedMessage, exceptionThrown.getMessage());
+
+        // more than 3 digits
+        exceptionThrown = assertThrows(IllegalArgumentException.class, () -> new Weight("1000"));
+        assertEquals(expectedMessage, exceptionThrown.getMessage());
+
+        // negative number
+        exceptionThrown = assertThrows(IllegalArgumentException.class, () -> new Weight("-1"));
+        assertEquals(expectedMessage, exceptionThrown.getMessage());
+
+        // has spaces
+        exceptionThrown = assertThrows(IllegalArgumentException.class, () -> new Weight(" 1 "));
+        assertEquals(expectedMessage, exceptionThrown.getMessage());
     }
 
     @Test
-    public void isValidWeight() {
-        // null phone number
-        assertThrows(NullPointerException.class, () -> Weight.isValidWeight(null));
+    public void constructor_validWeight_createsWeight() {
+        assertEquals("100", new Weight("100").value);
 
-        // invalid phone numbers
-        assertFalse(Weight.isValidWeight("")); // empty string
-        assertFalse(Weight.isValidWeight(" ")); // spaces only
-        assertFalse(Weight.isValidWeight("abcd")); // non-numeric
-        assertFalse(Weight.isValidWeight("9011p041")); // alphabets within digits
-        assertFalse(Weight.isValidWeight("9312 1534")); // spaces within digits
-        assertFalse(Weight.isValidWeight("1231")); // more than three digits
-
-        // valid phone numbers
-        assertTrue(Weight.isValidWeight("911"));
-        assertTrue(Weight.isValidWeight("9"));
+        // max value
+        assertEquals("999", new Weight("999").value);
     }
 }

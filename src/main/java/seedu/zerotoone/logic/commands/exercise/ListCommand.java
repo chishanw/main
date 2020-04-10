@@ -25,4 +25,9 @@ public class ListCommand extends ExerciseCommand {
         model.updateFilteredExerciseList(PREDICATE_SHOW_ALL_EXERCISES);
         return new CommandResult(MESSAGE_SUCCESS);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this || other instanceof ListCommand;
+    }
 }

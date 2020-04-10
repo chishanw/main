@@ -26,7 +26,7 @@ import seedu.zerotoone.model.workout.ReadOnlyWorkoutList;
 import seedu.zerotoone.model.workout.Workout;
 
 /**
- * Stub for the Model class.
+ * A default model stub that have all of the methods failing.
  */
 public class ModelStub implements Model {
     @Override
@@ -46,58 +46,6 @@ public class ModelStub implements Model {
 
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    // -----------------------------------------------------------------------------------------
-    // Session
-    @Override
-    public boolean isInSession() {
-        return false;
-    }
-
-    @Override
-    public OngoingWorkout startSession(Workout workout, LocalDateTime currentDateTime) {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public void stopSession(LocalDateTime currentDateTime) {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public Optional<OngoingWorkout> getCurrentWorkout() {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public CompletedSet skip() {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public CompletedSet done() {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public Boolean hasExerciseLeft() {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public ReadOnlyCompletedSetList getLastSet() {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public ReadOnlyTimerList getTimerList() {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public void shutdownTimer() {
         throw new AssertionError("This method should not be called.");
     }
 
@@ -179,15 +127,18 @@ public class ModelStub implements Model {
         throw new AssertionError("This method should not be called.");
     }
 
+    @Override
     public boolean hasWorkout(Workout workout) {
         throw new AssertionError("This method should not be called.");
     }
 
+    @Override
     public void deleteWorkout(Workout target) {
         throw new AssertionError("This method should not be called.");
     }
 
-    public void deleteExerciseFromWorkouts(Exercise exercise) {
+    @Override
+    public void deleteExerciseFromWorkouts(Exercise target) {
         throw new AssertionError("This method should not be called.");
     }
 
@@ -208,6 +159,58 @@ public class ModelStub implements Model {
 
     @Override
     public ReadOnlyOngoingSetList getOngoingSetList() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    // -----------------------------------------------------------------------------------------
+    // Session
+    @Override
+    public boolean isInSession() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public OngoingWorkout startSession(Workout workout, LocalDateTime currentDateTime) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void stopSession(LocalDateTime currentDateTime) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public Optional<OngoingWorkout> getCurrentWorkout() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public CompletedSet skip() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public CompletedSet done() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public Boolean hasExerciseLeft() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public ReadOnlyCompletedSetList getLastSet() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public ReadOnlyTimerList getTimerList() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void shutdownTimer() {
         throw new AssertionError("This method should not be called.");
     }
 
@@ -243,28 +246,17 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public ArrayList<CompletedWorkout> getLogListCopyAsArrayList() {
-        throw new AssertionError("This method should not be called.");
-    }
-
-
-    @Override
-    public Optional<LocalDateTime> getStatisticsStartDateRange() {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public Optional<LocalDateTime> getStatisticsEndDateRange() {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
     public void populateSortedScheduledWorkoutList() {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
     public ReadOnlyLogList getLogList() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public ArrayList<CompletedWorkout> getLogListCopyAsArrayList() {
         throw new AssertionError("This method should not be called.");
     }
 
@@ -279,12 +271,17 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public void setStatisticsDateRange(Optional<LocalDateTime> startRange, Optional<LocalDateTime> endRange) {
+    public Path getLogListFilePath() {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
-    public Path getLogListFilePath() {
+    public Optional<LocalDateTime> getStatisticsStartDateRange() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public Optional<LocalDateTime> getStatisticsEndDateRange() {
         throw new AssertionError("This method should not be called.");
     }
 
@@ -295,6 +292,11 @@ public class ModelStub implements Model {
 
     @Override
     public void setLogListFilePath(Path logListFilePath) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void setStatisticsDateRange(Optional<LocalDateTime> startRange, Optional<LocalDateTime> endRange) {
         throw new AssertionError("This method should not be called.");
     }
 }

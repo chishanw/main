@@ -22,7 +22,6 @@ import seedu.zerotoone.model.exercise.exceptions.DuplicateExerciseException;
 import seedu.zerotoone.testutil.exercise.ExerciseBuilder;
 
 public class ExerciseListTest {
-
     private final ExerciseList exerciseList = new ExerciseList();
 
     @Test
@@ -82,6 +81,28 @@ public class ExerciseListTest {
         assertThrows(UnsupportedOperationException.class, () -> exerciseList.getExerciseList().remove(0));
     }
 
+    @Test
+    public void equals() {
+        ExerciseList emptyList = new ExerciseList();
+        ExerciseList filledList = getTypicalExerciseList();
+
+        // same obj
+        assertTrue(emptyList.equals(emptyList));
+
+        // same value
+        ExerciseList emptyListCopy = new ExerciseList();
+        assertTrue(emptyList.equals(emptyListCopy));
+
+        // null value
+        assertFalse(emptyList.equals(null));
+
+        // invalid type
+        assertFalse(emptyList.equals(1));
+
+        // different value inside list -> returns false
+        assertFalse(emptyList.equals(filledList));
+    }
+
     /**
      * A stub ReadOnlyExerciseList whose exercises list can violate interface constraints.
      */
@@ -97,5 +118,4 @@ public class ExerciseListTest {
             return exercises;
         }
     }
-
 }

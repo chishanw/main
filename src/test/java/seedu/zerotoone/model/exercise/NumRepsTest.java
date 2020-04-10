@@ -1,8 +1,7 @@
 package seedu.zerotoone.model.exercise;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.zerotoone.testutil.Assert.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
@@ -15,25 +14,39 @@ public class NumRepsTest {
 
     @Test
     public void constructor_invalidNumReps_throwsIllegalArgumentException() {
-        String invalidNumReps = "";
-        assertThrows(IllegalArgumentException.class, () -> new NumReps(invalidNumReps));
+        Exception exceptionThrown;
+        String expectedMessage = NumReps.MESSAGE_CONSTRAINTS;
+
+        // empty string
+        exceptionThrown = assertThrows(IllegalArgumentException.class, () -> new NumReps(""));
+        assertEquals(expectedMessage, exceptionThrown.getMessage());
+
+        // spaces only
+        exceptionThrown = assertThrows(IllegalArgumentException.class, () -> new NumReps(" "));
+        assertEquals(expectedMessage, exceptionThrown.getMessage());
+
+        // non-numeric
+        exceptionThrown = assertThrows(IllegalArgumentException.class, () -> new NumReps("asdf"));
+        assertEquals(expectedMessage, exceptionThrown.getMessage());
+
+        // starts with zero
+        exceptionThrown = assertThrows(IllegalArgumentException.class, () -> new NumReps("01"));
+        assertEquals(expectedMessage, exceptionThrown.getMessage());
+
+        // negative number
+        exceptionThrown = assertThrows(IllegalArgumentException.class, () -> new NumReps("-1"));
+        assertEquals(expectedMessage, exceptionThrown.getMessage());
+
+        // has spaces
+        exceptionThrown = assertThrows(IllegalArgumentException.class, () -> new NumReps(" 1 "));
+        assertEquals(expectedMessage, exceptionThrown.getMessage());
     }
 
     @Test
-    public void isValidNumReps() {
-        // null phone number
-        assertThrows(NullPointerException.class, () -> NumReps.isValidNumReps(null));
+    public void constructor_validNumReps_createsNumReps() {
+        assertEquals("100", new NumReps("100").value);
 
-        // invalid phone numbers
-        assertFalse(NumReps.isValidNumReps("")); // empty string
-        assertFalse(NumReps.isValidNumReps(" ")); // spaces only
-        assertFalse(NumReps.isValidNumReps("asdf")); // non-numeric
-        assertFalse(NumReps.isValidNumReps("9011p041")); // alphabets within digits
-        assertFalse(NumReps.isValidNumReps("9312 1534")); // spaces within digits
-
-        // valid phone numbers
-        assertTrue(NumReps.isValidNumReps("911"));
-        assertTrue(NumReps.isValidNumReps("93121534"));
-        assertTrue(NumReps.isValidNumReps("124293842033123")); // long numbers
+        // large numbers
+        assertEquals("124293842033123", new NumReps("124293842033123").value);
     }
 }
