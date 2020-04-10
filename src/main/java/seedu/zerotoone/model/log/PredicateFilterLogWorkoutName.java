@@ -8,7 +8,7 @@ import seedu.zerotoone.commons.util.StringUtil;
 import seedu.zerotoone.model.session.CompletedWorkout;
 
 /**
- * Tests that a {@code Session}'s {@code Name} matches any of the keywords given.
+ * Tests that a {@code CompletedWorkout}'s {@code WorkoutName} matches any of the keywords given.
  */
 public class PredicateFilterLogWorkoutName implements Predicate<CompletedWorkout> {
     private final List<String> keywords;

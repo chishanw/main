@@ -439,3 +439,39 @@
 .isSkipped {
     -fx-fill: red;
 }
+
+.calendar {
+    -fx-fill: white;
+}
+
+#statisticsTitle {
+    -fx-font-size: 34px;
+    -fx-font-family: "Open Sans Bold";
+    -fx-fill: #FFA372;
+    -fx-text-fill: #FFA372;
+    -fx-padding: 10px;
+}
+
+#statisticsSubTitle {
+    -fx-font-size: 12px;
+    -fx-font-family: "Open Sans Italic";
+    -fx-fill: white;
+    -fx-text-fill: white;
+    -fx-padding: 10px;
+}
+
+.metricLabel {
+    -fx-font-size: 14px;
+    -fx-font-family: "Open Sans SemiBold";
+    -fx-fill: white;
+    -fx-text-fill: white;
+    -fx-padding: 10px;
+}
+
+.metricResult {
+    -fx-font-size: 14px;
+    -fx-font-family: "Open Sans Regular";
+    -fx-fill: white;
+    -fx-text-fill: white;
+    -fx-padding: 10px;
+}

@@ -23,7 +23,7 @@
             </Label>
 
             <HBox alignment="CENTER_LEFT" spacing="5">
-                <FontAwesomeIcon glyphName="CALENDAR"/>
+                <FontAwesomeIcon styleClass="calendar" glyphName="CALENDAR"/>
                 <Label fx:id="startEndTime" styleClass="cell_big_label" />
             </HBox>
 

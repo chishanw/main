@@ -1,68 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.chart.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.stage.*?>
 
-<fx:root minHeight="720" minWidth="540" resizable="false" title="ZeroToOne Report" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
-  <scene>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<fx:root minHeight="640" minWidth="540" resizable="false" title="ZeroToOne Report Card" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+
+    <icons>
+        <Image url="@/images/icon.png" />
+    </icons>
+    <scene>
     <Scene>
-        <AnchorPane>
+        <stylesheets>
+            <URL value="@css/DarkTheme.css" />
+            <URL value="@css/Extensions.css" />
+        </stylesheets>
+        <AnchorPane styleClass="background">
 
             <VBox>
-
                 <HBox>
-                     <Label>ZeroToOne Statistics</Label>
-                </HBox>
-
-                <HBox>
-                    <Label fx:id="range"/>
-                </HBox>
-
-                <HBox>
-                    <Label fx:id="totalWorkoutCount">Total Workouts Count</Label>
-                </HBox>
-
-                <HBox alignment="CENTER" prefHeight="119.0" prefWidth="114.0">
-                    <children>
-                        <Label fx:id="message" text="Label">
-                            <HBox.margin>
-                                <Insets right="5.0" />
-                            </HBox.margin>
-                        </Label>
-                    </children>
-                    <opaqueInsets>
-                        <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
-                    </opaqueInsets>
                     <padding>
-                        <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
+                        <Insets bottom="10" left="10" right="10" top="10" />
                     </padding>
+                     <Text fx:id="statisticsTitle">ZeroToOne Report Card</Text>
                 </HBox>
 
                 <HBox>
-                    <Label fx:id="averageTimePerDay">Average Time Per Day -></Label>
+                    <padding>
+                        <Insets bottom="10" left="10" right="10" />
+                    </padding>
+                    <Text fx:id="statisticsSubTitle">Statistics generated from </Text>
                 </HBox>
 
-                <HBox>
-                    <Label fx:id="totalTime" >Total time -> </Label>
-                </HBox>
+                <VBox alignment="CENTER_LEFT">
+                        <HBox>
+                            <Label prefWidth="175.0" styleClass="metricLabel">Total # of Workouts: </Label>
+                            <Label fx:id="totalWorkoutCount" styleClass="metricResult">3</Label>
+                        </HBox>
 
+                        <HBox>
+                            <Label prefWidth="175.0" styleClass="metricLabel" text="Total time Spend:">Total time Spend: </Label>
+                            <Label fx:id="totalTime"  styleClass="metricResult" text="1" />
+                        </HBox>
 
+                        <HBox>
+                            <Label prefWidth="175.0" styleClass="metricLabel">Average Time per day:</Label>
+                            <Label fx:id="averageTimePerDay" styleClass="metricResult" text="1" />
+                        </HBox>
+                </VBox>
 
-                <HBox>
-
-                    <LineChart>
-                        <xAxis>
-                            <CategoryAxis side="BOTTOM" />
-                        </xAxis>
-                        <yAxis>
-                            <NumberAxis side="LEFT" />
-                        </yAxis>
-                    </LineChart>
-                </HBox>
+                <VBox fx:id="lineChartContainer" alignment="CENTER"/>
             </VBox>
 
 

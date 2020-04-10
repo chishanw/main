@@ -10,7 +10,7 @@ import java.util.List;
 import seedu.zerotoone.model.workout.WorkoutName;
 
 /**
- * Represents an immutable Session once a session is completed.
+ * Represents an immutable Log once a session is completed.
  */
 public class CompletedWorkout {
 
@@ -23,8 +23,8 @@ public class CompletedWorkout {
     /**
      * Every field must be present and not null.
      */
-    public CompletedWorkout(WorkoutName name,
-            List<CompletedExercise> exercises, LocalDateTime start, LocalDateTime end) {
+    public CompletedWorkout(WorkoutName name, List<CompletedExercise> exercises, LocalDateTime start,
+        LocalDateTime end) {
         requireAllNonNull(name, exercises, start, end);
         this.workoutName = name;
         this.startTime = start;

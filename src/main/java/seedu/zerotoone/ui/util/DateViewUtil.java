@@ -12,6 +12,18 @@ import java.time.temporal.ChronoUnit;
  */
 public class DateViewUtil {
 
+    public static String getPrettyDateTime(LocalDateTime time) {
+        int year = time.getYear();
+        int day = time.getDayOfMonth();
+
+        String month = capitalize(time.getMonth().toString());
+        String dayOfWeek = capitalize(time.getDayOfWeek().toString().substring(0, 3));
+
+        int startHour = time.getHour();
+        int startMinute = time.getMinute();
+        return String.format("%s %s %s %s,  %02d:%02d", dayOfWeek, day, month, year, startHour, startMinute);
+    }
+
     /**
      * Gets pretty date range date time.
      *
@@ -100,5 +112,10 @@ public class DateViewUtil {
             .substring(2)
             .replaceAll("(\\d[HMS])(?!$)", "$1 ")
             .toLowerCase();
+    }
+
+
+    public static Long getDurationInMinutes(LocalDateTime start, LocalDateTime end) {
+        return (Duration.between(start, end)).toMinutes();
     }
 }

@@ -19,7 +19,7 @@ import seedu.zerotoone.model.session.CompletedWorkout;
 public class DeleteCommand extends LogCommand {
     public static final String COMMAND_WORD = "delete";
     public static final String MESSAGE_USAGE = "Usage: log delete LOG_ID";
-    public static final String MESSAGE_DELETE_LOG_SUCCESS = "Deleted log: %1$s on %2$s";
+    public static final String MESSAGE_DELETE_LOG_SUCCESS = "Successfully deleted log: %1$s on %2$s";
     private final Index logId;
 
     public DeleteCommand(Index targetIndex) {

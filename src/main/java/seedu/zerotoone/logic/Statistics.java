@@ -46,7 +46,7 @@ public class Statistics {
 
         Duration averageTimePerDay = totalWorkoutDuration.dividedBy(numberOfDays);
 
-        return new StatisticsData(start, end, workoutCount, totalWorkoutDuration, averageTimePerDay);
+        return new StatisticsData(workouts, start, end, workoutCount, totalWorkoutDuration, averageTimePerDay);
     }
 
     /**
