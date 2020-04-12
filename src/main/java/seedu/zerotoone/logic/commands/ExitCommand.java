@@ -9,7 +9,9 @@ public class ExitCommand extends Command {
 
     public static final String COMMAND_WORD = "exit";
 
-    public static final String MESSAGE_EXIT_ACKNOWLEDGEMENT = "Exiting ZeroToOne as requested ...";
+    public static final String MESSAGE_EXIT_ACKNOWLEDGEMENT =
+            "Thank you for using ZeroToOne! Your data has been saved successfully.\n"
+            + "Hope to see you again soon!";
 
     @Override
     public CommandResult execute(Model model) {
