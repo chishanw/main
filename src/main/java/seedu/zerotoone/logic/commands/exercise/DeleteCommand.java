@@ -10,6 +10,7 @@ import seedu.zerotoone.commons.core.index.Index;
 import seedu.zerotoone.logic.commands.Command;
 import seedu.zerotoone.logic.commands.CommandResult;
 import seedu.zerotoone.logic.commands.exceptions.CommandException;
+import seedu.zerotoone.logic.commands.util.Commands;
 import seedu.zerotoone.model.Model;
 import seedu.zerotoone.model.exercise.Exercise;
 
@@ -18,7 +19,7 @@ import seedu.zerotoone.model.exercise.Exercise;
  */
 public class DeleteCommand extends ExerciseCommand {
     public static final String COMMAND_WORD = "delete";
-    public static final String MESSAGE_USAGE = "Usage: exercise delete EXERCISE_ID";
+    public static final String MESSAGE_USAGE = "Usage: " + Commands.EXERCISE_DELETE;
     public static final String MESSAGE_DELETE_EXERCISE_SUCCESS = "Deleted Exercise: %1$s";
     private final Index exerciseId;
 

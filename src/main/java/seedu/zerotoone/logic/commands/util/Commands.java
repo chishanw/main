@@ -16,7 +16,7 @@ public class Commands {
     public static final String EXERCISE_EDIT = "exercise edit EXERCISE_ID e/<exercise_name>";
     public static final String EXERCISE_DELETE = "exercise delete EXERCISE_ID";
     public static final String EXERCISE_FIND = "exercise find e/<exercise_name>";
-    public static final String EXERCISE_SET_ADD = "exercise set add EXERCISE_ID SET_ID";
+    public static final String EXERCISE_SET_ADD = "exercise set add EXERCISE_ID r/<num_reps> m/<weight>";
     public static final String EXERCISE_SET_EDIT = "exercise set edit EXERCISE_ID SET_ID r/<num_reps> m/<weight>";
     public static final String EXERCISE_SET_DELETE = "exercise set delete EXERCISE_ID SET_ID";
 

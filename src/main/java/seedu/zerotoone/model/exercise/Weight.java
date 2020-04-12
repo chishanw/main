@@ -9,7 +9,7 @@ import static seedu.zerotoone.commons.util.AppUtil.checkArgument;
  */
 public class Weight {
 
-    public static final String MESSAGE_CONSTRAINTS = "Weight should be a number between 0 and 1000.";
+    public static final String MESSAGE_CONSTRAINTS = "Weight should be a number from 1 to 999.";
 
     /*
      * The first character of the weight must not be a whitespace,

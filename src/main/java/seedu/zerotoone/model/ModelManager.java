@@ -197,6 +197,7 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredExerciseList(Predicate<Exercise> predicate) {
         requireNonNull(predicate);
+        filteredExercises.setPredicate(PREDICATE_SHOW_NONE);
         filteredExercises.setPredicate(predicate);
     }
 
@@ -228,6 +229,7 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredLogList(Predicate<CompletedWorkout> predicate) {
         requireNonNull(predicate);
+        filteredLogList.setPredicate(PREDICATE_SHOW_NONE);
         filteredLogList.setPredicate(predicate);
     }
 
@@ -455,6 +457,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void setExerciseInWorkouts(Exercise target, Exercise editedExercise) {
+        workoutList.setExerciseInWorkouts(target, editedExercise);
+    }
+
+    @Override
     public void addWorkout(Workout workout) {
         workoutList.addWorkout(workout);
         updateFilteredWorkoutList(PREDICATE_SHOW_ALL_WORKOUTS);
@@ -474,6 +481,7 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredWorkoutList(Predicate<Workout> predicate) {
         requireNonNull(predicate);
+        filteredWorkouts.setPredicate(PREDICATE_SHOW_NONE);
         filteredWorkouts.setPredicate(predicate);
     }
 

@@ -24,8 +24,8 @@ public class EditCommandParser implements Parser<EditCommand> {
      */
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_DATETIME);
-        if (!ArgumentTokenizer.arePrefixesPresent(argMultimap, PREFIX_DATETIME)
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args);
+        if (!ArgumentTokenizer.isOnlyPrefixesPresent(argMultimap, PREFIX_DATETIME)
                 || argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
         }

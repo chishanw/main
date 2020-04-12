@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.time.LocalDateTime;
 
 import seedu.zerotoone.logic.commands.exceptions.CommandException;
+import seedu.zerotoone.logic.commands.util.Commands;
 import seedu.zerotoone.model.Model;
 import seedu.zerotoone.model.session.CompletedSet;
 
@@ -13,7 +14,7 @@ import seedu.zerotoone.model.session.CompletedSet;
  */
 public class DoneCommand extends Command {
     public static final String COMMAND_WORD = "done";
-    public static final String MESSAGE_USAGE = "Usage: done";
+    public static final String MESSAGE_USAGE = "Usage: " + Commands.DONE;
     public static final String MESSAGE_SUCCESS = "Completed set:%1$s";
     public static final String MESSAGE_NONE_LEFT = "You have finished the last set, "
             + "your workout session is done and saved!";

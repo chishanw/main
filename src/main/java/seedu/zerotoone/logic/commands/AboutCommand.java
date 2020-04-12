@@ -1,5 +1,6 @@
 package seedu.zerotoone.logic.commands;
 
+import seedu.zerotoone.logic.commands.util.Commands;
 import seedu.zerotoone.model.Model;
 
 /**
@@ -8,10 +9,7 @@ import seedu.zerotoone.model.Model;
 public class AboutCommand extends Command {
 
     public static final String COMMAND_WORD = "about";
-
-    public static final String MESSAGE_USAGE = "Try running the command: " + COMMAND_WORD
-            + "\nThis shows you the program usage instructions.";
-
+    public static final String MESSAGE_USAGE = "Usage: " + Commands.ABOUT;
     public static final String SHOWING_ABOUT_MESSAGE =
             "Here is some info about this app, and a list of all the commands!";
 

@@ -6,6 +6,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import seedu.zerotoone.logic.parser.CliSyntax;
+import seedu.zerotoone.logic.parser.exceptions.ParseException;
+
 /**
  * Tokenizes arguments string of the form: {@code preamble <prefix>value <prefix>value ...}<br>
  *     e.g. {@code some preamble text t/ 11.00 t/12.00 k/ m/ July}  where prefixes are {@code t/ k/ m/}.<br>
@@ -15,6 +18,8 @@ import java.util.stream.Stream;
  *    in the above example.<br>
  */
 public class ArgumentTokenizer {
+    public static final String MESSAGE_REPEATED_PREFIX = "Each prefix is only allowed to appear"
+            + " at most once in the command.";
 
     /**
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given
@@ -25,6 +30,27 @@ public class ArgumentTokenizer {
     }
 
     /**
+     * Returns true if only the specified prefixes are present.
+     */
+    public static boolean isOnlyPrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        boolean allPrefixesPresent = arePrefixesPresent(argumentMultimap, prefixes);
+        boolean otherPrefixesNotPresent = CliSyntax.getAllPrefixes().stream()
+                .filter(prefix -> !Arrays.asList(prefixes).contains(prefix))
+                .noneMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+
+        return allPrefixesPresent && otherPrefixesNotPresent;
+    }
+
+    /**
+     * Tokenizes an arguments string based on all known prefixes.
+     * More info at {@code tokenize(argsString, prefixes...)}.
+     */
+    public static ArgumentMultimap tokenize(String argsString) throws ParseException {
+        List<Prefix> prefixes = CliSyntax.getAllPrefixes();
+        return tokenize(argsString, prefixes.toArray(new Prefix[prefixes.size()]));
+    }
+
+    /**
      * Tokenizes an arguments string and returns an {@code ArgumentMultimap} object that maps prefixes to their
      * respective argument values. Only the given prefixes will be recognized in the arguments string.
      *
@@ -32,9 +58,19 @@ public class ArgumentTokenizer {
      * @param prefixes   Prefixes to tokenize the arguments string with
      * @return           ArgumentMultimap object that maps prefixes to their arguments
      */
-    public static ArgumentMultimap tokenize(String argsString, Prefix... prefixes) {
+    public static ArgumentMultimap tokenize(String argsString, Prefix... prefixes) throws ParseException {
+        boolean hasRepeatedPrefixes = Stream.of(prefixes)
+                .anyMatch(prefix -> isPrefixRepeated(argsString, prefix));
+        if (hasRepeatedPrefixes) {
+            throw new ParseException(MESSAGE_REPEATED_PREFIX);
+        }
+
         List<PrefixPosition> positions = findAllPrefixPositions(argsString, prefixes);
         return extractArguments(argsString, positions);
+    }
+
+    private static boolean isPrefixRepeated(String argsString, Prefix prefix) {
+        return argsString.split(prefix.getPrefix()).length > 2;
     }
 
     /**

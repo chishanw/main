@@ -74,15 +74,31 @@ public class WorkoutList implements ReadOnlyWorkoutList {
     }
 
     /**
-     * Replaces the given exercise {@code target} in the list with {@code editedWorkout}.
-     * {@code target} must exist in the exercise list.
-     * The exercise identity of {@code editedWorkout} must not be the same as another existing
-     * exercise in the exercise list.
+     * Replaces the given workout {@code target} in the list with {@code editedWorkout}.
+     * {@code target} must exist in the workout list.
+     * The workout identity of {@code editedWorkout} must not be the same as another existing
+     * workout in the workout list.
      */
     public void setWorkout(Workout target, Workout editedWorkout) {
         requireNonNull(editedWorkout);
 
         workouts.setWorkout(target, editedWorkout);
+    }
+
+    /**
+     * Replaces the given exercise {@code target} in every workout
+     * with {@code editedExercise}.
+     */
+    public void setExerciseInWorkouts(Exercise target, Exercise editedExercise) {
+        requireNonNull(target);
+        requireNonNull(editedExercise);
+
+        for (Workout workout : workouts.asUnmodifiableObservableList()) {
+            if (workout.hasExercise(target)) {
+                System.out.println("Editing: " + target);
+                workout.setExercise(target, editedExercise);
+            }
+        }
     }
 
     /**
@@ -98,12 +114,13 @@ public class WorkoutList implements ReadOnlyWorkoutList {
      */
     public void removeExerciseFromWorkouts(Exercise exercise) {
         for (Workout workout : workouts.asUnmodifiableObservableList()) {
-            workout.deleteExercise(exercise);
+            if (workout.hasExercise(exercise)) {
+                workout.deleteExercise(exercise);
+            }
         }
     }
 
     //// util methods
-
     @Override
     public String toString() {
         return workouts.asUnmodifiableObservableList().size() + " workouts";

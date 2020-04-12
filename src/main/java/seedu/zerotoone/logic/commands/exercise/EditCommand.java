@@ -2,6 +2,7 @@ package seedu.zerotoone.logic.commands.exercise;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.zerotoone.model.Model.PREDICATE_SHOW_ALL_EXERCISES;
+import static seedu.zerotoone.model.Model.PREDICATE_SHOW_ALL_WORKOUTS;
 
 import java.util.List;
 
@@ -10,6 +11,7 @@ import seedu.zerotoone.commons.core.index.Index;
 import seedu.zerotoone.logic.commands.Command;
 import seedu.zerotoone.logic.commands.CommandResult;
 import seedu.zerotoone.logic.commands.exceptions.CommandException;
+import seedu.zerotoone.logic.commands.util.Commands;
 import seedu.zerotoone.model.Model;
 import seedu.zerotoone.model.exercise.Exercise;
 import seedu.zerotoone.model.exercise.ExerciseName;
@@ -19,7 +21,7 @@ import seedu.zerotoone.model.exercise.ExerciseName;
  */
 public class EditCommand extends ExerciseCommand {
     public static final String COMMAND_WORD = "edit";
-    public static final String MESSAGE_USAGE = "Usage: exercise edit EXERCISE_ID e/<exercise_name>";
+    public static final String MESSAGE_USAGE = "Usage: " + Commands.EXERCISE_EDIT;
     public static final String MESSAGE_EDIT_EXERCISE_SUCCESS = "Edited exercise: %1$s";
     public static final String MESSAGE_DUPLICATE_EXERCISE = "This exercise already exists.";
 
@@ -64,7 +66,9 @@ public class EditCommand extends ExerciseCommand {
         }
 
         model.setExercise(exerciseToEdit, editedExercise);
+        model.setExerciseInWorkouts(exerciseToEdit, editedExercise);
         model.updateFilteredExerciseList(PREDICATE_SHOW_ALL_EXERCISES);
+        model.updateFilteredWorkoutList(PREDICATE_SHOW_ALL_WORKOUTS);
 
         String outputMessage = String.format(MESSAGE_EDIT_EXERCISE_SUCCESS,
                 editedExercise.getExerciseName().toString());

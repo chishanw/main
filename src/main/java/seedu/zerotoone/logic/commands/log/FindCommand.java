@@ -9,6 +9,7 @@ import java.util.function.Predicate;
 import seedu.zerotoone.logic.commands.Command;
 import seedu.zerotoone.logic.commands.CommandResult;
 import seedu.zerotoone.logic.commands.exceptions.CommandException;
+import seedu.zerotoone.logic.commands.util.Commands;
 import seedu.zerotoone.model.Model;
 import seedu.zerotoone.model.log.PredicateFilterLogWorkoutName;
 import seedu.zerotoone.model.session.CompletedWorkout;
@@ -20,8 +21,7 @@ import seedu.zerotoone.model.workout.WorkoutName;
  */
 public class FindCommand extends LogCommand {
     public static final String COMMAND_WORD = "find";
-    public static final String MESSAGE_USAGE =
-        "Usage: log find [st/start_time] [et/end_time] [w/workout_name]";
+    public static final String MESSAGE_USAGE = "Usage: " + Commands.LOG_FIND;
     public static final String MESSAGE_LOGS_LISTED_OVERVIEW = "Listed %1$d logged workout session(s) found!";
 
     private final Optional<LocalDateTime> startRange;

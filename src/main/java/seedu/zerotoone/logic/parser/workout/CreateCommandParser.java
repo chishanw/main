@@ -23,8 +23,8 @@ public class CreateCommandParser implements Parser<CreateCommand> {
      */
     public CreateCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_WORKOUT_NAME);
-        if (!ArgumentTokenizer.arePrefixesPresent(argMultimap, PREFIX_WORKOUT_NAME)
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args);
+        if (!ArgumentTokenizer.isOnlyPrefixesPresent(argMultimap, PREFIX_WORKOUT_NAME)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, CreateCommand.MESSAGE_USAGE));
         }

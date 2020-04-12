@@ -27,6 +27,7 @@ import seedu.zerotoone.logic.commands.CommandResult;
 import seedu.zerotoone.logic.commands.exceptions.CommandException;
 import seedu.zerotoone.model.exercise.Exercise;
 import seedu.zerotoone.model.exercise.ExerciseName;
+import seedu.zerotoone.model.workout.Workout;
 import seedu.zerotoone.testutil.ModelStub;
 import seedu.zerotoone.testutil.exercise.ExerciseBuilder;
 
@@ -158,12 +159,18 @@ public class EditCommandTest {
         }
 
         @Override
+        public void setExerciseInWorkouts(Exercise target, Exercise editedExercise) {}
+
+        @Override
         public ObservableList<Exercise> getFilteredExerciseList() {
             return FXCollections.observableArrayList(exercises);
         }
 
         @Override
         public void updateFilteredExerciseList(Predicate<Exercise> predicate) {}
+
+        @Override
+        public void updateFilteredWorkoutList(Predicate<Workout> predicate) {}
     }
 
 }

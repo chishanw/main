@@ -8,6 +8,7 @@ import java.util.List;
 import seedu.zerotoone.logic.commands.Command;
 import seedu.zerotoone.logic.commands.CommandResult;
 import seedu.zerotoone.logic.commands.exceptions.CommandException;
+import seedu.zerotoone.logic.commands.util.Commands;
 import seedu.zerotoone.model.Model;
 import seedu.zerotoone.model.exercise.Exercise;
 import seedu.zerotoone.model.exercise.ExerciseName;
@@ -18,7 +19,7 @@ import seedu.zerotoone.model.exercise.ExerciseSet;
  */
 public class CreateCommand extends ExerciseCommand {
     public static final String COMMAND_WORD = "create";
-    public static final String MESSAGE_USAGE = "Usage: exercise create e/<exercise_name>";
+    public static final String MESSAGE_USAGE = "Usage: " + Commands.EXERCISE_CREATE;
     public static final String MESSAGE_SUCCESS = "New exercise added: %1$s";
     public static final String MESSAGE_DUPLICATE_EXERCISE = "This exercise already exists";
 

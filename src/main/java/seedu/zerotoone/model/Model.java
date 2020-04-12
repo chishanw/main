@@ -28,6 +28,7 @@ public interface Model extends WorkoutModel, SchedulerModel {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Exercise> PREDICATE_SHOW_ALL_EXERCISES = unused -> true;
     Predicate<CompletedWorkout> PREDICATE_SHOW_ALL_LOGS = unused -> true;
+    Predicate<Object> PREDICATE_SHOW_NONE = unused -> false;
 
     // -----------------------------------------------------------------------------------------
     // Common - User Preferences

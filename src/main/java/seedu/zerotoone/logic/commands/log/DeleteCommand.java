@@ -10,6 +10,7 @@ import seedu.zerotoone.commons.core.index.Index;
 import seedu.zerotoone.logic.commands.Command;
 import seedu.zerotoone.logic.commands.CommandResult;
 import seedu.zerotoone.logic.commands.exceptions.CommandException;
+import seedu.zerotoone.logic.commands.util.Commands;
 import seedu.zerotoone.model.Model;
 import seedu.zerotoone.model.session.CompletedWorkout;
 
@@ -18,7 +19,7 @@ import seedu.zerotoone.model.session.CompletedWorkout;
  */
 public class DeleteCommand extends LogCommand {
     public static final String COMMAND_WORD = "delete";
-    public static final String MESSAGE_USAGE = "Usage: log delete LOG_ID";
+    public static final String MESSAGE_USAGE = "Usage: " + Commands.LOG_DELETE;
     public static final String MESSAGE_DELETE_LOG_SUCCESS = "Successfully deleted log: %1$s on %2$s";
     private final Index logId;
 

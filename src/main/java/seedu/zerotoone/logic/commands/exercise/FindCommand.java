@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import seedu.zerotoone.logic.commands.Command;
 import seedu.zerotoone.logic.commands.CommandResult;
 import seedu.zerotoone.logic.commands.exceptions.CommandException;
+import seedu.zerotoone.logic.commands.util.Commands;
 import seedu.zerotoone.model.Model;
 import seedu.zerotoone.model.exercise.ExerciseName;
 import seedu.zerotoone.model.exercise.PredicateFilterExerciseName;
@@ -15,7 +16,7 @@ import seedu.zerotoone.model.exercise.PredicateFilterExerciseName;
  */
 public class FindCommand extends ExerciseCommand {
     public static final String COMMAND_WORD = "find";
-    public static final String MESSAGE_USAGE = "Usage: exercise find e/<exercise_name>";
+    public static final String MESSAGE_USAGE = "Usage: " + Commands.EXERCISE_FIND;
     public static final String MESSAGE_EXERCISES_LISTED_OVERVIEW = "%1$d exercises listed!";
 
     private final ExerciseName exerciseName;

@@ -9,6 +9,7 @@ import seedu.zerotoone.commons.core.index.Index;
 import seedu.zerotoone.logic.commands.Command;
 import seedu.zerotoone.logic.commands.CommandResult;
 import seedu.zerotoone.logic.commands.exceptions.CommandException;
+import seedu.zerotoone.logic.commands.util.Commands;
 import seedu.zerotoone.model.Model;
 import seedu.zerotoone.model.schedule.DateTime;
 import seedu.zerotoone.model.schedule.OneTimeSchedule;
@@ -20,7 +21,7 @@ import seedu.zerotoone.model.workout.WorkoutName;
  */
 public class CreateCommand extends ScheduleCommand {
     public static final String COMMAND_WORD = "create";
-    public static final String MESSAGE_USAGE = "Usage: schedule create WORKOUT_ID d/<dateTime>";
+    public static final String MESSAGE_USAGE = "Usage: " + Commands.SCHEDULE_CREATE;
     public static final String MESSAGE_SUCCESS = "New schedule added: %1$s";
     public static final String MESSAGE_DUPLICATE_SCHEDULE = "This schedule already exists";
     public static final String MESSAGE_DATETIME_IN_THE_PAST = "Datetime provided is in the past";

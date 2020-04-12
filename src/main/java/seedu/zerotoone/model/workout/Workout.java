@@ -50,12 +50,31 @@ public class Workout {
     }
 
     /**
-     * Deletes an exercise from the workout.
-     * @param exericse The exercise to be deleted.
+     * Returns true if the workout contains the exercise.
+     * @param exercise The exercise to be checked.
+     * @return true if exercise is in {@code workoutExercises}.
      */
-    public void deleteExercise(Exercise exericse) {
-        while (workoutExercises.contains(exericse)) {
-            workoutExercises.remove(exericse);
+    public boolean hasExercise(Exercise exercise) {
+        return workoutExercises.contains(exercise);
+    }
+
+    /**
+     * Replace an exercise in the workout with another exercise.
+     */
+    public void setExercise(Exercise target, Exercise editedExercise) {
+        int index = workoutExercises.indexOf(target);
+        if (index != -1) {
+            workoutExercises.set(index, editedExercise);
+        }
+    }
+
+    /**
+     * Deletes an exercise from the workout.
+     * @param exercise The exercise to be deleted.
+     */
+    public void deleteExercise(Exercise exercise) {
+        while (workoutExercises.contains(exercise)) {
+            workoutExercises.remove(exercise);
         }
     }
 

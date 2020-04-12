@@ -11,6 +11,7 @@ import seedu.zerotoone.commons.core.index.Index;
 import seedu.zerotoone.logic.commands.Command;
 import seedu.zerotoone.logic.commands.CommandResult;
 import seedu.zerotoone.logic.commands.exceptions.CommandException;
+import seedu.zerotoone.logic.commands.util.Commands;
 import seedu.zerotoone.model.Model;
 import seedu.zerotoone.model.exercise.Exercise;
 import seedu.zerotoone.model.exercise.ExerciseSet;
@@ -22,7 +23,7 @@ import seedu.zerotoone.model.exercise.Weight;
  */
 public class AddCommand extends SetCommand {
     public static final String COMMAND_WORD = "add";
-    public static final String MESSAGE_USAGE = "Usage: exercise set add EXERCISE_ID r/<num_reps> m/<weight>";
+    public static final String MESSAGE_USAGE = "Usage: " + Commands.EXERCISE_SET_ADD;
     public static final String MESSAGE_EDIT_EXERCISE_SUCCESS = "Added exercise set: %1$s";
 
     private final Index exerciseId;

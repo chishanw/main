@@ -1,5 +1,8 @@
 package seedu.zerotoone.logic.parser;
 
+import java.util.Arrays;
+import java.util.List;
+
 import seedu.zerotoone.logic.parser.util.Prefix;
 
 /**
@@ -16,4 +19,17 @@ public class CliSyntax {
     public static final Prefix PREFIX_FILEPATH = new Prefix("p/");
     public static final Prefix PREFIX_LOG_START = new Prefix("st/");
     public static final Prefix PREFIX_LOG_END = new Prefix("et/");
+
+    public static List<Prefix> getAllPrefixes() {
+        return Arrays.asList(PREFIX_EXERCISE_NAME,
+                PREFIX_WORKOUT_NAME,
+                PREFIX_NUM_OF_SETS,
+                PREFIX_NUM_OF_REPS,
+                PREFIX_WEIGHT,
+                PREFIX_DATETIME,
+                PREFIX_FREQUENCY,
+                PREFIX_FILEPATH,
+                PREFIX_LOG_START,
+                PREFIX_LOG_END);
+    }
 }

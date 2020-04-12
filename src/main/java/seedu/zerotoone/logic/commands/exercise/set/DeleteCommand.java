@@ -11,6 +11,7 @@ import seedu.zerotoone.commons.core.index.Index;
 import seedu.zerotoone.logic.commands.Command;
 import seedu.zerotoone.logic.commands.CommandResult;
 import seedu.zerotoone.logic.commands.exceptions.CommandException;
+import seedu.zerotoone.logic.commands.util.Commands;
 import seedu.zerotoone.model.Model;
 import seedu.zerotoone.model.exercise.Exercise;
 import seedu.zerotoone.model.exercise.ExerciseSet;
@@ -20,7 +21,7 @@ import seedu.zerotoone.model.exercise.ExerciseSet;
  */
 public class DeleteCommand extends SetCommand {
     public static final String COMMAND_WORD = "delete";
-    public static final String MESSAGE_USAGE = "Usage: exercise set delete EXERCISE_ID SET_ID";
+    public static final String MESSAGE_USAGE = "Usage: " + Commands.EXERCISE_SET_DELETE;
     public static final String MESSAGE_DELETE_EXERCISE_SET_SUCCESS = "Deleted Exercise Set: %1$s";
 
     private final Index exerciseId;

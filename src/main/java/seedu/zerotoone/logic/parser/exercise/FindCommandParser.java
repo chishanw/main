@@ -24,7 +24,7 @@ public class FindCommandParser implements Parser<FindCommand> {
     public FindCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_EXERCISE_NAME);
-        if (!ArgumentTokenizer.arePrefixesPresent(argMultimap, PREFIX_EXERCISE_NAME)
+        if (!ArgumentTokenizer.isOnlyPrefixesPresent(argMultimap, PREFIX_EXERCISE_NAME)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }

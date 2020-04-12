@@ -9,6 +9,7 @@ import static seedu.zerotoone.testutil.CommandParserTestUtil.assertParseSuccess;
 import org.junit.jupiter.api.Test;
 
 import seedu.zerotoone.logic.commands.workout.FindCommand;
+import seedu.zerotoone.logic.parser.exceptions.ParseException;
 import seedu.zerotoone.logic.parser.util.ArgumentMultimap;
 import seedu.zerotoone.logic.parser.util.ArgumentTokenizer;
 import seedu.zerotoone.model.workout.WorkoutName;
@@ -33,7 +34,7 @@ public class FindCommandParserTest {
     }
 
     @Test
-    public void parse_validArgs_success() {
+    public void parse_validArgs_success() throws ParseException {
         // typical valid args
         String validArgs = " w/workout";
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(validArgs, PREFIX_WORKOUT_NAME);

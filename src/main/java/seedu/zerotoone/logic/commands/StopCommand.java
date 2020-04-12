@@ -7,6 +7,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 
 import seedu.zerotoone.logic.commands.exceptions.CommandException;
+import seedu.zerotoone.logic.commands.util.Commands;
 import seedu.zerotoone.model.Model;
 
 /**
@@ -14,7 +15,7 @@ import seedu.zerotoone.model.Model;
  */
 public class StopCommand extends Command {
     public static final String COMMAND_WORD = "stop";
-    public static final String MESSAGE_USAGE = "Usage: stop";
+    public static final String MESSAGE_USAGE = "Usage: " + Commands.STOP;
     public static final String MESSAGE_SUCCESS = "Stopped workout session: %1$s at ";
     public static final FormatStyle FORMAT_STYLE = FormatStyle.MEDIUM;
 

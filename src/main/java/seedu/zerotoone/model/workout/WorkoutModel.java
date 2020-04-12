@@ -50,6 +50,14 @@ public interface WorkoutModel {
     void deleteExerciseFromWorkouts(Exercise exercise);
 
     /**
+     * Replaces the {@code target} from all workouts in {@code WorkoutList}
+     * with {@code editedExercise}.
+     * @param target The exercise to be replaced.
+     * @param editedExercise The replacement.
+     */
+    void setExerciseInWorkouts(Exercise target, Exercise editedExercise);
+
+    /**
      * Adds the given workout.
      * {@code workout} must not already exist in the workout list.
      */
